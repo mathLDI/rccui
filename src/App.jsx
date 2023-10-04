@@ -2,9 +2,14 @@ import { useState } from "react";
 import { ChoiceListbox } from "./Component/ListBox";
 import { Card } from "./Component/Card";
 
-const AIRCRAFTTYPES = ["DHC-8", "HS748"];
-const RUNWAYTYPE = ["Asphalt", "Gravel"];
-const CONTAMINENT1 = ["Select...", ...Array.from({ length: 11 }, (_, index) => `Choice ${index}`)];
+const AIRCRAFTTYPES = ["DHC-8", "HS-748"];
+const RUNWAYTYPE = ["PAVED", "GRAVEL"];
+
+
+const runwayConditionDescriptionPaved2 = ["Select...", ...Array.from({ length: 11 }, (_, index) => `Choice ${index}`)];
+
+
+
 const CONTAMINENT2 = ["Select...", ...Array.from({ length: 11 }, (_, index) => `Choice ${index}`)];
 const PERCENTAGE = Array.from({ length: 11 }, (_, index) => `${index * 10} %`);
 
@@ -26,7 +31,9 @@ function App() {
 
   return (
     <div className="grid h-screen md:place-items-center bg-gray-100 justify-center">
+      
       <div className="container mx-auto pt-10 md:pt-0 bg-gray-100">
+
         <Card cardTitle={"Calculator"} status={null}>
           <div>
             <div className="flex flex-row justify-between items-center p-2">
@@ -42,7 +49,7 @@ function App() {
             <div className="flex flex-row justify-between items-center p-2">
               <div>Contaminent 1: </div>
               <div className="flex flex-row gap-4">
-                <ChoiceListbox choices={CONTAMINENT1} callback={contaniment1Handler} width={"w-40"} />
+                <ChoiceListbox choices={runwayConditionDescriptionPaved2} callback={contaniment1Handler} width={"w-40"} />
                 <ChoiceListbox choices={PERCENTAGE} width={"w-28"} />
               </div>
             </div>
@@ -72,7 +79,10 @@ function App() {
             {showAlert && <div className="flex flex-row bg-red-500 rounded-md p-2 text-white">Please contact dispatch</div>}
           </div>
         </Card>
+
+
       </div>
+
     </div>
   );
 }
