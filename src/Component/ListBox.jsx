@@ -19,7 +19,6 @@ export const ChoiceListbox = ({ choices, callback, width }) => {
   };
 
   return (
-    
     <div className={width === undefined ? "w-72" : width}>
       <Listbox value={selected} onChange={changeHandler}>
         <div className="relative">
