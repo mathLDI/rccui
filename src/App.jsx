@@ -17,10 +17,7 @@ import RccToUsePerColumnPaved4 from './Component/functions/rccToUsePerColumnPave
 import FinalRccToUse2p0 from './Component/functions/finalRccToUse2p0.js';
 import SelectedRccToMaxXwindDash8 from './Component/functions/selectedRccToMaxXwindDash82p0.js';
 import DispatchPerformanceCheck from './Component/functions/dispatchPerformanceCheck.js';
-
-
-
-
+import SeventyPercentBareAndDryUpgradeTo0 from './Component/functions/seventyPercentBareAndDryUpgradeTo0.js';
 
 
 function App() {
@@ -109,7 +106,7 @@ function App() {
     setRunwayConditionDescriptionPaved4(v);
   }
 
-  const [callDxp] = useState(null);
+  const [callDxp] = useState(true);
 
   //TODO insert rest of the logic
 
@@ -220,6 +217,17 @@ function App() {
     RccTotalPercentageBasic2p0State,
   })
 
+  const SeventyPercentBareAndDryUpgradeTo0Props = SeventyPercentBareAndDryUpgradeTo0({
+    RccTotalPercentageBasic2p0State,
+    fromPercentageState,
+    runwayConditionDescriptionPaved2,
+    runwayConditionDescriptionGravel1,
+    runwayConditionDescriptionPaved4,
+    runwayConditionDescriptionGravel3,
+    FinalRccToUse2p0Props
+
+  })
+
 
 
 
@@ -246,6 +254,7 @@ function App() {
                 <div>Contaminant 1: </div>
                 <div className="flex flex-row gap-4">
                   <ChoiceListbox choices={runwayConditionDescriptionPaved2List} callback={runwayConditionDescriptionPaved2Handler} width={"w-96"} />
+
                   <ChoiceListbox choices={contaminationCoverage2List} callback={dropdownPercentCoverageTopHandler} width={"w-28"} />
                 </div>
               </div>
@@ -308,10 +317,33 @@ function App() {
             </div>
             <div className="flex flex-row justify-between p-2">
               <div>Max crosswind:</div>
-              <div> <SelectedRccToMaxXwindDash8 FinalRccToUse2p0Props={FinalRccToUse2p0Props}/> </div>
+              <div> <SelectedRccToMaxXwindDash8 FinalRccToUse2p0Props={FinalRccToUse2p0Props} /> </div>
             </div>
             {showAlert && <div className="flex flex-row bg-red-500 rounded-md p-2 text-white">Please contact dispatch</div>}
           </div>
+
+
+          {DispatchPerformanceCheckProps !== "" && (<div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">< DispatchPerformanceCheck
+            FinalRccToUse2p0Props={FinalRccToUse2p0Props}
+            runwayConditionDescriptionPaved2={runwayConditionDescriptionPaved2}
+            runwayConditionDescriptionGravel1={runwayConditionDescriptionGravel1}
+            runwayConditionDescriptionPaved4={runwayConditionDescriptionPaved4}
+            runwayConditionDescriptionGravel3={runwayConditionDescriptionGravel3}
+            RccTotalPercentageBasic2p0State={RccTotalPercentageBasic2p0State}
+          /></div>)}
+
+          {SeventyPercentBareAndDryUpgradeTo0Props !== "" &&  (  <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
+            <SeventyPercentBareAndDryUpgradeTo0
+              RccTotalPercentageBasic2p0State={RccTotalPercentageBasic2p0State}
+              fromPercentageState={fromPercentageState}
+              runwayConditionDescriptionPaved2={runwayConditionDescriptionPaved2}
+              runwayConditionDescriptionGravel1={runwayConditionDescriptionGravel1}
+              runwayConditionDescriptionPaved4={runwayConditionDescriptionPaved4}
+              runwayConditionDescriptionGravel3={runwayConditionDescriptionGravel3}
+              FinalRccToUse2p0Props={FinalRccToUse2p0Props}
+            />
+          </div>)}
+
         </Card>
 
 

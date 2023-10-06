@@ -1,3 +1,4 @@
+
 const HigherPercentageContaminantWithBTW0To22p0 = ({ contaminationCoverage2,
   contaminationCoverage3, RccToUsePerColumnWithpavedOrGravelSelected1Props, RccToUsePerColumnWithpavedOrGravelSelected2Props }) => {
 
