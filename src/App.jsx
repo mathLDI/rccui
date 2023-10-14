@@ -19,15 +19,13 @@ import SelectedRccToMaxXwindDash8 from './Component/functions/selectedRccToMaxXw
 import SelectedRccToMaxXwindHS748 from './Component/functions/selectedRccToMaxXwindHS748.js';
 import DispatchPerformanceCheck from './Component/functions/dispatchPerformanceCheck.js';
 import SeventyPercentBareAndDryUpgradeTo0 from './Component/functions/seventyPercentBareAndDryUpgradeTo0.js';
-
+import OneHundredPercentCompactedSnow from './Component/functions/oneHundredPercentCompactedSnow.js';
 
 
 function App() {
 
 
   const buttonAircraftType = ["DHC-8", "HS-748"];
-
-  
 
   const runwayConditionDescriptionGravel1List = ["SELECT GRAVEL CONTAMINANT", "-Frost", "-Dry Snow 1.0 in or less depth: -15ºC and Colder OAT",
     "-Dry Snow 1.0 in or less depth: Warmer than -15ºC OAT", "-Dry Snow more than 1.0 in depth", "-Wet Snow 0.13 in or less depth.",
@@ -83,7 +81,7 @@ function App() {
   const [contaminationCoverage3, setContaminationCoverage3] = useState(0);
 
   const dropdownPercentCoverageLowerHandler = (v) => {
-    console.log(v);
+   
     setContaminationCoverage3(v)
   }
 
@@ -235,18 +233,40 @@ function App() {
   })
 
 
+  const OneHundredPercentCompactedSnowpProps = OneHundredPercentCompactedSnow ({
+    runwayConditionDescriptionPaved2, 
+    dropDownPavedOrGravel, 
+    contaminationCoverage2
+
+
+
+  })
+
+
+//////////////////////////////
+  const SeventyPercentBareAndDryTrueOrFalse = () =>{
+
+    if (contaminationCoverage2 === 100 && SeventyPercentBareAndDryUpgradeTo0Props === false )
+      return true
+  }
+  
+
+  console.log("SeventyPercentBareAndDryTrueOrFalse", SeventyPercentBareAndDryTrueOrFalse())
+
+  console.log("OneHundredPercentCompactedSnow:", OneHundredPercentCompactedSnowpProps)
+  
+/////////////////////////////////////////////////
+
   const SelectedRccToMaxXwindHS748Props = SelectedRccToMaxXwindHS748({
     FinalRccToUse2p0Props
   })
 
-  console.log("SelectedRccToMaxXwindHS748Props:", SelectedRccToMaxXwindHS748Props);
 
   const SelectedRccToMaxXwindDash8Props = SelectedRccToMaxXwindDash8({
     FinalRccToUse2p0Props
   })
 
-  console.log("SelectedRccToMaxXwindDash8Props:", SelectedRccToMaxXwindDash8Props);
-
+console.log("SeventyPercentBareAndDryUpgradeTo0Props:" , SeventyPercentBareAndDryUpgradeTo0Props)
 
 
   return (
@@ -284,7 +304,7 @@ function App() {
               runwayConditionDescriptionPaved2 !== '-100% Compacted Snow: -15ºC and Colder OAT' &&
               runwayConditionDescriptionPaved2 !== '-100% Compact Snow: Warmer than -15ºC OAT' &&
               runwayConditionDescriptionPaved2 !== '-Water on top of 100% Compacted Snow'
-              && (
+              && contaminationCoverage2 !== 0 && contaminationCoverage2 !== 100 && (
                 <div className="flex flex-row justify-between items-center p-2 mb-2">
                   <div>Contaminant 2: </div>
                   <div className="flex flex-row gap-4">
@@ -305,7 +325,7 @@ function App() {
             )}
 
 
-            {runwayConditionDescriptionGravel1 !== "SELECT GRAVEL CONTAMINANT" && dropDownPavedOrGravel === "GRAVEL" && (
+            {runwayConditionDescriptionGravel1 !== "SELECT GRAVEL CONTAMINANT" && dropDownPavedOrGravel === "GRAVEL" && contaminationCoverage2 !== 0 && contaminationCoverage2 !== 100 &&(
               <div className="flex flex-row justify-between items-center p-2 mb-2">
                 <div>Contaminant 2: </div>
                 <div className="flex flex-row gap-4">
@@ -359,7 +379,7 @@ function App() {
 
 
 
-          {DispatchPerformanceCheckProps === true && (<div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
+          {DispatchPerformanceCheckProps === true && OneHundredPercentCompactedSnowpProps === false &&  (<div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
             Dispatch may have to verify the takeoff or Landing distances on the DASH8
           </div>)}
 
