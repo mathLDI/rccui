@@ -39,10 +39,12 @@ const DispatchPerformanceCheck = ({ FinalRccToUse2p0Props,
             runwayConditions.includes(runwayConditionDescriptionGravel3)
 
         );
+///modified below with true of false to test - original code: 
+// ? 'Dispatch may have to verify the takeoff or Landing distances on the DASH8': '';
 
     return isDispatchVerificationNeeded
-        ? 'Dispatch may have to verify the takeoff or Landing distances on the DASH8'
-        : '';
+   
+
 };
 
 

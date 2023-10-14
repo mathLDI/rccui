@@ -16,14 +16,18 @@ import RccToUsePerColumnPaved2 from './Component/functions/rccToUsePerColumnPave
 import RccToUsePerColumnPaved4 from './Component/functions/rccToUsePerColumnPaved4.js';
 import FinalRccToUse2p0 from './Component/functions/finalRccToUse2p0.js';
 import SelectedRccToMaxXwindDash8 from './Component/functions/selectedRccToMaxXwindDash82p0.js';
+import SelectedRccToMaxXwindHS748 from './Component/functions/selectedRccToMaxXwindHS748.js';
 import DispatchPerformanceCheck from './Component/functions/dispatchPerformanceCheck.js';
 import SeventyPercentBareAndDryUpgradeTo0 from './Component/functions/seventyPercentBareAndDryUpgradeTo0.js';
 
 
+
 function App() {
+
 
   const buttonAircraftType = ["DHC-8", "HS-748"];
 
+  
 
   const runwayConditionDescriptionGravel1List = ["SELECT GRAVEL CONTAMINANT", "-Frost", "-Dry Snow 1.0 in or less depth: -15ºC and Colder OAT",
     "-Dry Snow 1.0 in or less depth: Warmer than -15ºC OAT", "-Dry Snow more than 1.0 in depth", "-Wet Snow 0.13 in or less depth.",
@@ -119,12 +123,13 @@ function App() {
   }
 
   const aircraftTypeHandler = (v) => {
+
+    console.log(v);
     setAircraftType(v);
   }
 
 
   ////////////////////////////////////PROPS//////////////////////////////////////////////
-
 
 
   const RccTotalPercentageBasic2p0State = RccTotalPercentageBasic2p0({
@@ -209,6 +214,7 @@ function App() {
 
 
   const DispatchPerformanceCheckProps = DispatchPerformanceCheck({
+
     FinalRccToUse2p0Props,
     runwayConditionDescriptionPaved2,
     runwayConditionDescriptionGravel1,
@@ -216,6 +222,7 @@ function App() {
     runwayConditionDescriptionGravel3,
     RccTotalPercentageBasic2p0State,
   })
+
 
   const SeventyPercentBareAndDryUpgradeTo0Props = SeventyPercentBareAndDryUpgradeTo0({
     RccTotalPercentageBasic2p0State,
@@ -225,9 +232,20 @@ function App() {
     runwayConditionDescriptionPaved4,
     runwayConditionDescriptionGravel3,
     FinalRccToUse2p0Props
-
   })
 
+
+  const SelectedRccToMaxXwindHS748Props = SelectedRccToMaxXwindHS748({
+    FinalRccToUse2p0Props
+  })
+
+  console.log("SelectedRccToMaxXwindHS748Props:", SelectedRccToMaxXwindHS748Props);
+
+  const SelectedRccToMaxXwindDash8Props = SelectedRccToMaxXwindDash8({
+    FinalRccToUse2p0Props
+  })
+
+  console.log("SelectedRccToMaxXwindDash8Props:", SelectedRccToMaxXwindDash8Props);
 
 
 
@@ -261,15 +279,20 @@ function App() {
             )}
 
 
-            {runwayConditionDescriptionPaved2 !== "SELECT PAVED CONTAMINANT" && dropDownPavedOrGravel === "PAVED" && (
-              <div className="flex flex-row justify-between items-center p-2 mb-2">
-                <div>Contaminant 2: </div>
-                <div className="flex flex-row gap-4">
-                  <ChoiceListbox choices={runwayConditionDescriptionPaved4List} callback={runwayConditionDescriptionPaved4Handler} width={"w-96"} />
-                  <ChoiceListbox choices={contaminationCoverage3List} callback={dropdownPercentCoverageLowerHandler} width={"w-28"} />
+            {runwayConditionDescriptionPaved2 !== "SELECT PAVED CONTAMINANT" && dropDownPavedOrGravel === "PAVED"
+              && runwayConditionDescriptionPaved2 !== '-Dry Snow or Wet Snow (Any depth) over 100% Compacted Snow' &&
+              runwayConditionDescriptionPaved2 !== '-100% Compacted Snow: -15ºC and Colder OAT' &&
+              runwayConditionDescriptionPaved2 !== '-100% Compact Snow: Warmer than -15ºC OAT' &&
+              runwayConditionDescriptionPaved2 !== '-Water on top of 100% Compacted Snow'
+              && (
+                <div className="flex flex-row justify-between items-center p-2 mb-2">
+                  <div>Contaminant 2: </div>
+                  <div className="flex flex-row gap-4">
+                    <ChoiceListbox choices={runwayConditionDescriptionPaved4List} callback={runwayConditionDescriptionPaved4Handler} width={"w-96"} />
+                    <ChoiceListbox choices={contaminationCoverage3List} callback={dropdownPercentCoverageLowerHandler} width={"w-28"} />
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
             {dropDownPavedOrGravel === "GRAVEL" && (
               <div className="flex flex-row justify-between items-center p-2">
@@ -298,58 +321,71 @@ function App() {
 
         </Card>
 
+
         <Card cardTitle={"Results"} status={callDxp}>
           <div>
             <div className="flex flex-row justify-between p-2">
               <div>RCC code:</div>
-              <div> <FinalRccToUse2p0
-                RccTotalPercentageBasic2p0State={RccTotalPercentageBasic2p0State}
-                fromPercentageState={fromPercentageState}
-                contaminationCoverage2={contaminationCoverage2}
-                contaminationCoverage3={contaminationCoverage3}
-                LowerRccContaminant2p0Props={LowerRccContaminant2p0Props}
-                LowerRccContaminantWithBTW0To22p0Props={LowerRccContaminantWithBTW0To22p0Props}
-                HigherPercentageContaminant2p0Props={HigherPercentageContaminant2p0Props}
-                HigherPercentageContaminantWithBTW0To22p0Props={HigherPercentageContaminantWithBTW0To22p0Props}
-                RccToUsePerColumnWithpavedOrGravelSelected1Props={RccToUsePerColumnWithpavedOrGravelSelected1Props}
-                RccToUsePerColumnWithpavedOrGravelSelected2Props={RccToUsePerColumnWithpavedOrGravelSelected2Props}
-              /></div>
+              <div>
+                <FinalRccToUse2p0
+                  RccTotalPercentageBasic2p0State={RccTotalPercentageBasic2p0State}
+                  fromPercentageState={fromPercentageState}
+                  contaminationCoverage2={contaminationCoverage2}
+                  contaminationCoverage3={contaminationCoverage3}
+                  LowerRccContaminant2p0Props={LowerRccContaminant2p0Props}
+                  LowerRccContaminantWithBTW0To22p0Props={LowerRccContaminantWithBTW0To22p0Props}
+                  HigherPercentageContaminant2p0Props={HigherPercentageContaminant2p0Props}
+                  HigherPercentageContaminantWithBTW0To22p0Props={HigherPercentageContaminantWithBTW0To22p0Props}
+                  RccToUsePerColumnWithpavedOrGravelSelected1Props={RccToUsePerColumnWithpavedOrGravelSelected1Props}
+                  RccToUsePerColumnWithpavedOrGravelSelected2Props={RccToUsePerColumnWithpavedOrGravelSelected2Props}
+                /></div>
+
             </div>
+
+
             <div className="flex flex-row justify-between p-2">
               <div>Max crosswind:</div>
-              <div> <SelectedRccToMaxXwindDash8 FinalRccToUse2p0Props={FinalRccToUse2p0Props} /> </div>
+              {(aircraftType === "DHC-8") ? (
+                <div>
+                  {SelectedRccToMaxXwindDash8Props}
+                </div>
+              ) : <div> {SelectedRccToMaxXwindHS748Props}</div>
+
+              }
             </div>
             {showAlert && <div className="flex flex-row bg-red-500 rounded-md p-2 text-white">Please contact dispatch</div>}
+
           </div>
 
 
-          {DispatchPerformanceCheckProps !== "" && (<div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">< DispatchPerformanceCheck
-            FinalRccToUse2p0Props={FinalRccToUse2p0Props}
-            runwayConditionDescriptionPaved2={runwayConditionDescriptionPaved2}
-            runwayConditionDescriptionGravel1={runwayConditionDescriptionGravel1}
-            runwayConditionDescriptionPaved4={runwayConditionDescriptionPaved4}
-            runwayConditionDescriptionGravel3={runwayConditionDescriptionGravel3}
-            RccTotalPercentageBasic2p0State={RccTotalPercentageBasic2p0State}
-          /></div>)}
 
-          {SeventyPercentBareAndDryUpgradeTo0Props !== "" &&  (  <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
-            <SeventyPercentBareAndDryUpgradeTo0
-              RccTotalPercentageBasic2p0State={RccTotalPercentageBasic2p0State}
-              fromPercentageState={fromPercentageState}
-              runwayConditionDescriptionPaved2={runwayConditionDescriptionPaved2}
-              runwayConditionDescriptionGravel1={runwayConditionDescriptionGravel1}
-              runwayConditionDescriptionPaved4={runwayConditionDescriptionPaved4}
-              runwayConditionDescriptionGravel3={runwayConditionDescriptionGravel3}
-              FinalRccToUse2p0Props={FinalRccToUse2p0Props}
-            />
+          {DispatchPerformanceCheckProps === true && (<div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
+            Dispatch may have to verify the takeoff or Landing distances on the DASH8
           </div>)}
+
+
+
+          {SeventyPercentBareAndDryUpgradeTo0Props === true && (<div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
+            Code 0 does not need to be considered  when the runway is 70% bare and dry or 70% bare and wet, in this case upgrade code 0 to 1. Dispatch may have to verify the takeoff or Landing distances on the DASH8
+          </div>)}
+
+
+          {(runwayConditionDescriptionPaved2.includes("100") && contaminationCoverage2 !== 100) ?
+            (
+              <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
+                Runway must be completely covered with Compacted Snow to select this contaminant. If that is the case, select 100%
+              </div>
+            ) : null
+
+          }
+
 
         </Card>
 
 
-      </div>
+      </div >
 
-    </div>
+    </div >
   );
 
 }

@@ -3,16 +3,16 @@
 const FinalRccToUse2p0 = ({
     RccTotalPercentageBasic2p0State,
     fromPercentageState,
-  contaminationCoverage2,
-  contaminationCoverage3,
-  LowerRccContaminant2p0Props,
-  LowerRccContaminantWithBTW0To22p0Props,
-  HigherPercentageContaminant2p0Props,
-  HigherPercentageContaminantWithBTW0To22p0Props,
-  RccToUsePerColumnWithpavedOrGravelSelected1Props,
-  RccToUsePerColumnWithpavedOrGravelSelected2Props,
+    contaminationCoverage2,
+    contaminationCoverage3,
+    LowerRccContaminant2p0Props,
+    LowerRccContaminantWithBTW0To22p0Props,
+    HigherPercentageContaminant2p0Props,
+    HigherPercentageContaminantWithBTW0To22p0Props,
+    RccToUsePerColumnWithpavedOrGravelSelected1Props,
+    RccToUsePerColumnWithpavedOrGravelSelected2Props,
 }) => {
-  
+
     let result = "null";
 
     if (RccTotalPercentageBasic2p0State > 100) {
@@ -73,11 +73,11 @@ const FinalRccToUse2p0 = ({
         result = "null";
     }
 
-  return (
-    
-      result
-   
-  );
+    return (
+
+        result
+
+    );
 };
 
 export default FinalRccToUse2p0;
