@@ -20,6 +20,7 @@ import SelectedRccToMaxXwindHS748 from './Component/functions/selectedRccToMaxXw
 import DispatchPerformanceCheck from './Component/functions/dispatchPerformanceCheck.js';
 import SeventyPercentBareAndDryUpgradeTo0 from './Component/functions/seventyPercentBareAndDryUpgradeTo0.js';
 import OneHundredPercentCompactedSnow from './Component/functions/oneHundredPercentCompactedSnow.js';
+import Navbar from './Component/NavBar.jsx';  // Adjust the path based on the actual location of your component
 
 
 function App() {
@@ -108,7 +109,7 @@ function App() {
     setRunwayConditionDescriptionPaved4(v);
   }
 
-  const [callDxp] = useState(true);
+  const [callDxp] = useState(null);
 
   //TODO insert rest of the logic
 
@@ -270,7 +271,10 @@ console.log("SeventyPercentBareAndDryUpgradeTo0Props:" , SeventyPercentBareAndDr
 
 
   return (
+<div>
+    < Navbar/>
     <div className="grid h-screen md:place-items-center bg-gray-100 justify-center">
+
 
       <div className="container mx-auto pt-10 md:pt-0 bg-gray-100">
 
@@ -346,7 +350,7 @@ console.log("SeventyPercentBareAndDryUpgradeTo0Props:" , SeventyPercentBareAndDr
           <div>
             <div className="flex flex-row justify-between p-2">
               <div>RCC code:</div>
-              <div>
+              <div className= {`flex ${FinalRccToUse2p0Props === 0 && SeventyPercentBareAndDryUpgradeTo0Props === false ? 'text-red-500' : ''}`}>
                 <FinalRccToUse2p0
                   RccTotalPercentageBasic2p0State={RccTotalPercentageBasic2p0State}
                   fromPercentageState={fromPercentageState}
@@ -366,7 +370,7 @@ console.log("SeventyPercentBareAndDryUpgradeTo0Props:" , SeventyPercentBareAndDr
             <div className="flex flex-row justify-between p-2">
               <div>Max crosswind:</div>
               {(aircraftType === "DHC-8") ? (
-                <div>
+                <div className= {`flex ${FinalRccToUse2p0Props === 0 && SeventyPercentBareAndDryUpgradeTo0Props === false ? 'text-red-500' : ''}`}>
                   {SelectedRccToMaxXwindDash8Props}
                 </div>
               ) : <div> {SelectedRccToMaxXwindHS748Props}</div>
@@ -406,6 +410,7 @@ console.log("SeventyPercentBareAndDryUpgradeTo0Props:" , SeventyPercentBareAndDr
       </div >
 
     </div >
+    </div>
   );
 
 }
