@@ -3,17 +3,20 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
+  { name: 'RCC Calculator', href: '#', current: true },
   { name: 'Team', href: '#', current: false },
   { name: 'Projects', href: '#', current: false },
   { name: 'Calendar', href: '#', current: false },
 ]
 
+
+
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Navbar() {
+export default function Navbar({selectedNavItem, onNavItemClick}) {
   return (
     <Disclosure as="nav" className="bg-gray-800 w-full">
       {({ open }) => (
@@ -46,6 +49,7 @@ export default function Navbar() {
                       <a
                         key={item.name}
                         href={item.href}
+                        onClick={() => onNavItemClick(item.name)}  // Handle the click here
                         className={classNames(
                           item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                           'rounded-md px-3 py-2 text-sm font-medium'

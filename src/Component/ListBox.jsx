@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import PropTypes from "prop-types";
@@ -10,13 +10,20 @@ import PropTypes from "prop-types";
  * @param {String} width - tailwind width, w-72 if undefined
  * @returns
  */
-export const ChoiceListbox = ({ choices, callback, width }) => {
+export const ChoiceListbox = ({ choices, callback, width, reset, resetCallback }) => {
   const [selected, setSelected] = useState(choices[0]);
 
   const changeHandler = (v) => {
     setSelected(v);
     callback(v);
   };
+
+  useEffect(() => {
+    if (reset) {
+      setSelected(choices[[0]]);
+      resetCallback();
+    }
+  }, [reset]);
 
   return (
     <div className={width === undefined ? "w-72" : width}>
@@ -63,4 +70,7 @@ ChoiceListbox.propTypes = {
   choices: PropTypes.array,
   callback: PropTypes.func,
   width: PropTypes.string,
+
+  reset: PropTypes.bool,
+  resetCallback: PropTypes.func,
 };
