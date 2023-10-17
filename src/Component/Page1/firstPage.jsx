@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { ChoiceListbox } from "../../Component/ListBox.jsx";
 import { Card } from "../../Component/Card.jsx"
 import { CustomButton } from "../../Component/Button.jsx";
@@ -70,7 +70,6 @@ const FirstPage = () => {
     const [contaminationCoverage3, setContaminationCoverage3] = useState(0);
     const [showAlert] = useState(false);
     const [callDxp] = useState(null);
-    const [selectedNavItem, setSelectedNavItem] = useState('Team');
     const [resetListBox, setResetListBox] = useState(false);
     const [buttonTypeOfReport, setButtonTypeOfReport] = useState("RCC Not Provided");
 
@@ -240,11 +239,6 @@ const FirstPage = () => {
         FinalRccToUse2p0Props
     })
 
-
-    // Function to handle navigation item selection
-    const handleNavItemClick = (itemName) => {
-        setSelectedNavItem(itemName);
-    }
 
 
     const resetButtonHandler = () => {
