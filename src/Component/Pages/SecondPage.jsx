@@ -1,5 +1,8 @@
 // SecondPage.jsx
-import { Card } from "../../Component/Card.jsx"
+import { Card } from "../Card.jsx"
+
+
+
 
 const SecondPage = () => {
   return (
