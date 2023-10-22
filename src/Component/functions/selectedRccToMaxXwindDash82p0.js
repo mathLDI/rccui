@@ -15,7 +15,7 @@ const SelectedRccToMaxXwindDash8 = ({ FinalRccToUse2p0Props }) => {
     } else if (FinalRccToUse2p0Props === 0) {
         return 'NO GO';
     } else {
-        return 'null';
+        return '';
     }
 };
 

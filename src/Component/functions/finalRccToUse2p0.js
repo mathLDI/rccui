@@ -16,7 +16,7 @@ const FinalRccToUse2p0 = ({
     let result = "null";
 
     if (RccTotalPercentageBasic2p0State > 100) {
-        result = 'Contaminant(s) over 100% !';
+        result = true;
     } else if (RccTotalPercentageBasic2p0State <= 25) {
         result = 6;
     } else if (

@@ -439,6 +439,15 @@ const FirstPageRccNotProvided = () => {
                         </div>
                     ) : null
                 }
+
+                {(FinalRccToUse2p0Props === true) ?
+                    (
+                        <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
+                            Contaminant(s) over 100% !
+                        </div>
+                    ) : null
+                }
+
             </Card>
             {/****RWYCCC NOT PROVIDED CARS ABOVE****/}
 

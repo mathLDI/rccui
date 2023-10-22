@@ -9,7 +9,7 @@ const CorrectedLandingRwyccToUse = ({
 ) => {
 
   if (integerCorrectedLandingDistance > integerRunwayLength) {
-    return "Corrected distance is longer than runway length!";
+    return true;
   } else if ((integerCorrectedLandingDistance <=
     integerRunwayLength * 0.3333) &&
     (integerCorrectedLandingDistance !== 0 && integerRunwayLength !== 0)) {
@@ -24,7 +24,7 @@ const CorrectedLandingRwyccToUse = ({
     (integerCorrectedLandingDistance !== 0 && integerRunwayLength !== 0)) {
     return ReturnLowestRwyccBtw1and2and3Props;
   } else {
-    return "Enter Distances";
+    return false;
   }
 }
 

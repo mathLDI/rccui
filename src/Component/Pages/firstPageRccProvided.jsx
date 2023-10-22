@@ -6,18 +6,18 @@ import { CustomButton } from "../Button.jsx";
 import ReturnLowestRwyccBtw1and2and3 from '../functions/returnLowestRccBtw1and2and3.js';
 import ReturnLowestRwyccBtw1and2 from '../functions/returnLowestRwyccBtw1and2.js';
 import CorrectedLandingRwyccToUse from '../functions/correctedLandingRwyccToUse.js';
-import SelectedRccToMaxXwindDash8 from '../functions/selectedRccToMaxXwindDash8.js';
+import SelectedRccToMaxXwindLanding from '../functions/selectedRccToMaxXwindLanding.js';
+import SelectedRccToMaxXwindTakeoff from '../functions/selectedRccToMaxXwindTakeoff.js';
 
 
 const FirstPageRccProvided = () => {
 
-    const rwyccChoices = [0, 1, 2, 3, 4, 5, 6];
+    const rwyccChoices = [6, 5, 4, 3, 2, 1, 0]; 
     const buttonAircraftType = ["DHC-8", "HS-748"];
-    const [showAlert] = useState(false);
     const [callDxp] = useState(null);
-    const [rwycc1, setRwycc1] = useState(0);
-    const [rwycc2, setRwycc2] = useState(0);
-    const [rwycc3, setRwycc3] = useState(0);
+    const [rwycc1, setRwycc1] = useState(6);
+    const [rwycc2, setRwycc2] = useState(6);
+    const [rwycc3, setRwycc3] = useState(6);
     const [runwayLength, setRunwayLength] = useState(0);
     const integerRunwayLength = parseInt(runwayLength, 10);
     const [correctedLandingDistance, setCorrectedLandingDistance] = useState(0);
@@ -61,11 +61,19 @@ const FirstPageRccProvided = () => {
     })
 
 
+    const SelectedRccToMaxXwindTakeoffProps = SelectedRccToMaxXwindTakeoff({
+        ReturnLowestRwyccBtw1and2and3Props,
+        aircraftType
+
+    })
+
+
+
     const resetButtonHandler = () => {
         setResetListBox(true);
-        setRwycc1(0);
-        setRwycc2(0);
-        setRwycc3(0);
+        setRwycc1(6);
+        setRwycc2(6);
+        setRwycc3(6);
         setRunwayLength(0);
         setCorrectedLandingDistance(0)
 
@@ -173,6 +181,34 @@ const FirstPageRccProvided = () => {
                         <div>
                             <div className="flex flex-row justify-between p-2">
                                 <div>RCC code:</div>
+                                {CorrectedLandingRwyccToUseProps === "Corrected distance is longer than runway length!" || CorrectedLandingRwyccToUseProps === "Enter Distances" ? "" :
+
+                                    <div className={`flex ${ReturnLowestRwyccBtw1and2and3Props === 0 ? 'text-red-500' : ''}`}>
+                                        {ReturnLowestRwyccBtw1and2and3Props}
+                                    </div>
+                                }
+
+
+                            </div>
+
+                            <div className="flex flex-row justify-between p-2">
+                                <div>Max crosswind:</div>
+                                <div className={`flex ${ReturnLowestRwyccBtw1and2and3Props === 0 ? 'text-red-500' : ''}`}>
+                                    {SelectedRccToMaxXwindTakeoffProps}
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </Card>
+
+                </div>
+
+                <div>
+                    <Card cardTitle={"Results Landing"} status={callDxp}>
+                        <div>
+                            <div className="flex flex-row justify-between p-2">
+                                <div>RCC code:</div>
                                 <div className={`flex ${CorrectedLandingRwyccToUseProps === 0 ? 'text-red-500' : ''}`}>
                                     <CorrectedLandingRwyccToUse
                                         rwycc1={rwycc1} // Pass rwycc1 as a prop
@@ -187,44 +223,25 @@ const FirstPageRccProvided = () => {
                             <div className="flex flex-row justify-between p-2">
                                 <div>Max crosswind:</div>
                                 <div className={`flex ${CorrectedLandingRwyccToUseProps === 0 ? 'text-red-500' : ''}`}>
-                                    <SelectedRccToMaxXwindDash8
+                                    <SelectedRccToMaxXwindLanding
                                         CorrectedLandingRwyccToUseProps={CorrectedLandingRwyccToUseProps}
                                         aircraftType={aircraftType}
                                     />
 
                                 </div>
                             </div>
-                            {showAlert && <div className="flex flex-row bg-red-500 rounded-md p-2 text-white">Please contact dispatch</div>}
 
                         </div>
 
-                    </Card>
-                </div>
+                        {CorrectedLandingRwyccToUseProps === true &&
+                            (<div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
+                                Corrected distance is longer than runway length!
+                            </div>)}
 
-                <div>
-                    <Card cardTitle={"Results Landing"} status={callDxp}>
-                        <div>
-                            <div className="flex flex-row justify-between p-2">
-                                <div>RCC code:</div>
-                                {CorrectedLandingRwyccToUseProps === "Corrected distance is longer than runway length!" || CorrectedLandingRwyccToUseProps === "Enter Distances" ? "" :
-
-                                    <div className={`flex ${CorrectedLandingRwyccToUseProps === 0 ? 'text-red-500' : ''}`}>
-                                        {ReturnLowestRwyccBtw1and2and3Props}
-                                    </div>
-                                }
-
-
-                            </div>
-
-                            <div className="flex flex-row justify-between p-2">
-                                <div>Max crosswind:</div>
-                                <div className={`flex ${CorrectedLandingRwyccToUseProps === 0 ? 'text-red-500' : ''}`}>
-                                    !!
-                                </div>
-                            </div>
-                            {showAlert && <div className="flex flex-row bg-red-500 rounded-md p-2 text-white">Please contact dispatch</div>}
-
-                        </div>
+                        {CorrectedLandingRwyccToUseProps === false &&
+                            (<div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
+                                Enter Distances
+                            </div>)}
 
                     </Card>
 

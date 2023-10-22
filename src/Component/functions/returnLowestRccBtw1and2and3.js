@@ -12,7 +12,7 @@ const ReturnLowestRwyccBtw1and2and3 = ({
     const list = [rwycc1, rwycc2, rwycc3];
   
     if (integerCorrectedLandingDistance > integerRunwayLength) {
-      return "null";
+      return "";
     } else {
       return list.reduce((curr, next) => (curr < next ? curr : next));
     }
