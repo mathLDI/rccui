@@ -14,7 +14,6 @@ const FirstPageSelector = () => {
 
     const [typeOfReport, setTypeOfReport] = useState('RCC Not Provided');
 
-    console.log("typeOfReport from page firstPage.jsx:", typeOfReport);
 
     const onDropdownChange = (v) => {
         return setTypeOfReport(v);

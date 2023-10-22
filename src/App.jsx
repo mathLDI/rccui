@@ -4,8 +4,10 @@ import SecondPage from './Component/Pages/SecondPage.jsx';
 import FirstPageSelector from './Component/Pages/firstPage.jsx';
 
 
-
 function App() {
+
+  // Log the result to the console
+
   const [selectedNavItem, setSelectedNavItem] = useState('RCC Calculator');
 
   // Function to handle navigation item selection
