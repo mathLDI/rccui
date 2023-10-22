@@ -6,8 +6,7 @@ import { CustomButton } from "../Button.jsx";
 import ReturnLowestRwyccBtw1and2and3 from '../functions/returnLowestRccBtw1and2and3.js';
 import ReturnLowestRwyccBtw1and2 from '../functions/returnLowestRwyccBtw1and2.js';
 import CorrectedLandingRwyccToUse from '../functions/correctedLandingRwyccToUse.js';
-
-
+import SelectedRccToMaxXwindDash8 from '../functions/selectedRccToMaxXwindDash8.js';
 
 
 const FirstPageRccProvided = () => {
@@ -24,6 +23,7 @@ const FirstPageRccProvided = () => {
     const [correctedLandingDistance, setCorrectedLandingDistance] = useState(0);
     const integerCorrectedLandingDistance = parseInt(correctedLandingDistance, 10);
     const [resetListBox, setResetListBox] = useState(false);
+    const [aircraftType, setAircraftType] = useState("DHC-8")
 
     const rwycc1Handler = (v) => {
         return setRwycc1(v);
@@ -52,6 +52,14 @@ const FirstPageRccProvided = () => {
 
     })
 
+    const CorrectedLandingRwyccToUseProps = CorrectedLandingRwyccToUse({
+        rwycc1,
+        integerCorrectedLandingDistance,
+        integerRunwayLength,
+        ReturnLowestRwyccBtw1and2Props,
+        ReturnLowestRwyccBtw1and2and3Props
+    })
+
 
     const resetButtonHandler = () => {
         setResetListBox(true);
@@ -69,7 +77,10 @@ const FirstPageRccProvided = () => {
     };
 
 
+const setAircraftTypeHandler = (v) => {
 
+    setAircraftType(v);
+}
 
 
 
@@ -83,7 +94,10 @@ const FirstPageRccProvided = () => {
                 <div>
                     <div className="flex flex-row justify-between items-center p-2">
                         <div>Aircraft type:</div>
-                        <ChoiceListbox choices={buttonAircraftType} callback={null} />
+                        <ChoiceListbox 
+                        value={aircraftType}
+                        choices={buttonAircraftType} 
+                        callback={setAircraftTypeHandler} />
                     </div>
 
                     <div className="flex flex-row justify-between items-center p-2">
@@ -165,13 +179,18 @@ const FirstPageRccProvided = () => {
                                 ReturnLowestRwyccBtw1and2Props={ReturnLowestRwyccBtw1and2Props}
                                 ReturnLowestRwyccBtw1and2and3Props={ReturnLowestRwyccBtw1and2and3Props}
                             />
-
-
                         </div>
                     </div>
 
                     <div className="flex flex-row justify-between p-2">
                         <div>Max crosswind:</div>
+                        <div>
+                            <SelectedRccToMaxXwindDash8
+                                CorrectedLandingRwyccToUseProps={CorrectedLandingRwyccToUseProps}
+                                aircraftType={aircraftType}
+                            />
+
+                        </div>
                     </div>
                     {showAlert && <div className="flex flex-row bg-red-500 rounded-md p-2 text-white">Please contact dispatch</div>}
 

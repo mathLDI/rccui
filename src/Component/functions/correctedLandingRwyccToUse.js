@@ -1,6 +1,4 @@
 
-
-
 const CorrectedLandingRwyccToUse = ({ 
   rwycc1,
   integerCorrectedLandingDistance,
