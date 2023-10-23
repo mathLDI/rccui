@@ -12,13 +12,15 @@ const SecondPageCrosswindCalculator = () => {
     const buttonAircraftType = ["DHC-8", "HS-748"];
     const [callDxp] = useState(null);
     const [runwayHeading, setRunwayHeading] = useState(0);
-    const integerRunwayHeading = parseInt(runwayHeading, 10);
     const [windDirection, setWindDirection] = useState(0);
     const integerWindDirection = parseInt(windDirection, 10);
     const [windSpeed, setWindSpeed] = useState(0);
     const integerWindSpeed = parseInt(windSpeed, 10);
     const [resetListBox, setResetListBox] = useState(false);
     const [aircraftType, setAircraftType] = useState("DHC-8")
+
+    const integerRunwayHeading = parseInt(runwayHeading, 10);
+
 
     const CrosswindComponentProps = CrosswindComponent({
         integerWindDirection,
@@ -31,6 +33,8 @@ const SecondPageCrosswindCalculator = () => {
     const CrosswindComponentNoNegOneDigitProps = CrosswindComponentNoNegOneDigit({
         CrosswindComponentProps,
     })
+
+    console.log("CrosswindComponentNoNegOneDigitProps:", CrosswindComponentNoNegOneDigitProps);
 
 
     const HeadwindTailwindComponentProps = HeadwindTailwindComponent({
@@ -59,6 +63,7 @@ const SecondPageCrosswindCalculator = () => {
     const setAircraftTypeHandler = (v) => {
         setAircraftType(v);
     }
+
 
 
     return (
@@ -147,14 +152,32 @@ const SecondPageCrosswindCalculator = () => {
                     <Card cardTitle={"Results Crosswind (delete)"} status={callDxp}>
                         <div>
                             <div className="flex flex-row justify-between p-2">
-                                <div>Tailwind/headwind...:</div>
+                                {HeadwindTailwindComponentProps < 0 && (
+                                    <div>Tailwind:</div>
+                                )}
+
+                                {HeadwindTailwindComponentProps > 0 && (
+                                    <div>Headwind:</div>
+                                )}
+
+
+
                                 <div >
                                     {HeadwindTailwindComponentNoNegOneDigitProps}
                                 </div>
                             </div>
 
                             <div className="flex flex-row justify-between p-2">
-                                <div>Crosswind Component:</div>
+
+                                {CrosswindComponentProps === 0 && (
+                                    <div>No Crosswind:</div>)}
+
+                                {CrosswindComponentProps < 0 && (
+                                    <div>Left Crosswind:</div>)}
+
+                                {CrosswindComponentProps > 0 && (
+                                    <div>Right Crosswind:</div>)}
+
                                 <div >
                                     {CrosswindComponentNoNegOneDigitProps}
                                 </div>
@@ -170,7 +193,38 @@ const SecondPageCrosswindCalculator = () => {
 
             </div>
 
-            {/*ADD WARNING THE RUNWAY HEADING IS OVER 360*/}
+            {aircraftType === "DHC-8" && CrosswindComponentNoNegOneDigitProps > 36 &&
+                (<div className="flex flex-row bg-red-600 rounded-md p-2 text-white justify-center items-center">
+                    Over Max Crosswind
+                </div>)}
+
+            {aircraftType === "DHC-8" && HeadwindTailwindComponentProps < -10 && HeadwindTailwindComponentProps > -21 &&
+                (<div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
+                    Over Max Tailwind for the DHC-8 106 and DHC-8 300
+                </div>)}
+
+            {aircraftType === "DHC-8" && HeadwindTailwindComponentProps < -20 &&
+                (<div className="flex flex-row bg-red-600 rounded-md p-2 text-white justify-center items-center">
+                    Over Max Tailwind
+                </div>)}
+
+
+
+            {aircraftType === "HS-748" && CrosswindComponentNoNegOneDigitProps > 30 &&
+                (<div className="flex flex-row bg-red-600 rounded-md p-2 text-white justify-center items-center">
+                    Over Max Crosswind
+                </div>)}
+
+
+            {aircraftType === "HS-748" && HeadwindTailwindComponentProps < -10 &&
+                (<div className="flex flex-row bg-red-600 rounded-md p-2 text-white justify-center items-center">
+                    Over Max Tailwind
+                </div>)}
+
+            {integerWindSpeed > 50 &&
+                (<div className="flex flex-row bg-red-600 rounded-md p-2 text-white justify-center items-center">
+                    Over Max Speed on the Ground
+                </div>)}
 
 
         </div>

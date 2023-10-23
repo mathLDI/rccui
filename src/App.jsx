@@ -22,7 +22,7 @@ function App() {
 
       {selectedNavItem === 'RCC Calculator' && <FirstPageSelector />}
 
-      {selectedNavItem === 'Team' && <SecondPage />}
+      {selectedNavItem === 'X-Wind' && <SecondPage />}
     </div>
   );
 }
