@@ -9,7 +9,6 @@ const SelectedRccToMaxXwindTakeoff = ({ ReturnLowestRwyccBtw1and2and3Props, airc
   
     const index = selectedArray.indexOf(ReturnLowestRwyccBtw1and2and3Props);
   
-    console.log("Index position:", index);
   
   
     if (index === -1) {

@@ -9,9 +9,6 @@ const SelectedRccToMaxXwindLanding = ({ CorrectedLandingRwyccToUseProps, aircraf
 
   const index = selectedArray.indexOf(CorrectedLandingRwyccToUseProps);
 
-  console.log("Index position:", index);
-
-
   if (index === -1) {
     return "";
   }
