@@ -17,6 +17,13 @@ function classNames(...classes) {
 }
 
 export default function Navbar({selectedNavItem, onNavItemClick}) {
+
+
+  const updatedNavigation = navigation.map(item => ({
+    ...item,
+    current: item.name === selectedNavItem,
+  }));
+
   return (
     <Disclosure as="nav" className="bg-gray-800 w-full">
       {({ open }) => (
@@ -45,7 +52,7 @@ export default function Navbar({selectedNavItem, onNavItemClick}) {
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
-                    {navigation.map((item) => (
+                    {updatedNavigation.map((item) => (
                       <a
                         key={item.name}
                         href={item.href}
