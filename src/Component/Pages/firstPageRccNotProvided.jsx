@@ -4,6 +4,7 @@ import { Card } from "../Card.jsx"
 import { CustomButton } from "../Button.jsx";
 
 
+
 import RccTotalPercentageBasic2p0 from '../functions/RccTotalPercentageBasic2p0.js';
 import FromPercentageToContamCounter2p0 from '../functions/fromPercentageToContamCounter2p0.js';
 import LowerRccContaminant2p0 from '../functions/lowerRccContaminant2p0.js';
@@ -24,10 +25,9 @@ import SeventyPercentBareAndDryUpgradeTo0 from '../functions/seventyPercentBareA
 import OneHundredPercentCompactedSnow from '../functions/oneHundredPercentCompactedSnow.js';
 
 
-const FirstPageRccNotProvided = () => {
+const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, runwayConditionDescriptionGravel1Handler, initialAircraftType, setAircraftTypeHandler}) => {
 
-
-
+console.log("initialAircraftType from firstpagerccnot....:", initialAircraftType)
 
     const buttonAircraftType = ["DHC-8", "HS-748"];
 
@@ -61,8 +61,6 @@ const FirstPageRccNotProvided = () => {
 
     const contaminationCoverage2List = [0, 10, 20, 25, 30, 40, 50, 60, 70, 75, 80, 90, 100,];
     const contaminationCoverage3List = [0, 10, 20, 25, 30, 40, 50, 60, 70, 75, 80, 90, 100,];
-    const [aircraftType, setAircraftType] = useState("DHC-8");
-    const [runwayConditionDescriptionGravel1, setRunwayConditionDescriptionGravel1] = useState("SELECT GRAVEL CONTAMINANT");
     const [runwayConditionDescriptionPaved2, setRunwayConditionDescriptionPaved2] = useState("SELECT PAVED CONTAMINANT");
     const [runwayConditionDescriptionGravel3, setRunwayConditionDescriptionGravel3] = useState("SELECT GRAVEL CONTAMINANT");
     const [runwayConditionDescriptionPaved4, setRunwayConditionDescriptionPaved4] = useState("SELECT PAVED CONTAMINANT");
@@ -85,10 +83,6 @@ const FirstPageRccNotProvided = () => {
         setContaminationCoverage3(v)
     }
 
-    const runwayConditionDescriptionGravel1Handler = (v) => {
-
-        setRunwayConditionDescriptionGravel1(v);
-    }
 
     const runwayConditionDescriptionPaved2Handler = (v) => {
 
@@ -115,11 +109,7 @@ const FirstPageRccNotProvided = () => {
 
     }
 
-    const aircraftTypeHandler = (v) => {
-
-        console.log(v);
-        setAircraftType(v);
-    }
+  
 
     ////////////////////////////////////PROPS//////////////////////////////////////////////
 
@@ -132,7 +122,7 @@ const FirstPageRccNotProvided = () => {
     });
 
     const RccToUsePerColumnGravel1Props = RccToUsePerColumnGravel1({
-        runwayConditionDescriptionGravel1,
+        initialRunwayConditionDescriptionGravel1,
         RccTotalPercentageBasic2p0State
     })
 
@@ -204,7 +194,7 @@ const FirstPageRccNotProvided = () => {
 
         FinalRccToUse2p0Props,
         runwayConditionDescriptionPaved2,
-        runwayConditionDescriptionGravel1,
+        initialRunwayConditionDescriptionGravel1,
         runwayConditionDescriptionPaved4,
         runwayConditionDescriptionGravel3,
         RccTotalPercentageBasic2p0State,
@@ -214,7 +204,7 @@ const FirstPageRccNotProvided = () => {
         RccTotalPercentageBasic2p0State,
         fromPercentageState,
         runwayConditionDescriptionPaved2,
-        runwayConditionDescriptionGravel1,
+        initialRunwayConditionDescriptionGravel1,
         runwayConditionDescriptionPaved4,
         runwayConditionDescriptionGravel3,
         FinalRccToUse2p0Props
@@ -246,7 +236,7 @@ const FirstPageRccNotProvided = () => {
 
         setResetListBox(true);
         setContaminationCoverage2(0);
-        setRunwayConditionDescriptionGravel1("SELECT GRAVEL CONTAMINANT");
+        runwayConditionDescriptionGravel1Handler("SELECT GRAVEL CONTAMINANT");
         setRunwayConditionDescriptionPaved2("SELECT PAVED CONTAMINANT");
         setRunwayConditionDescriptionGravel3("SELECT GRAVEL CONTAMINANT");
         setRunwayConditionDescriptionPaved4("SELECT PAVED CONTAMINANT");
@@ -270,7 +260,7 @@ const FirstPageRccNotProvided = () => {
                 <div>
                     <div className="flex flex-row justify-between items-center p-2">
                         <div>Aircraft type:</div>
-                        <ChoiceListbox choices={buttonAircraftType} callback={aircraftTypeHandler} />
+                        <ChoiceListbox value={initialAircraftType} choices={buttonAircraftType} callback={setAircraftTypeHandler} />
                     </div>
 
                     <div className="flex flex-row justify-between items-center p-2">
@@ -337,6 +327,7 @@ const FirstPageRccNotProvided = () => {
                             <div>Contaminant 1: </div>
                             <div className="flex flex-row gap-4">
                                 <ChoiceListbox
+                                    value={initialRunwayConditionDescriptionGravel1}
                                     choices={runwayConditionDescriptionGravel1List}
                                     callback={runwayConditionDescriptionGravel1Handler}
                                     reset={resetListBox}
@@ -344,6 +335,7 @@ const FirstPageRccNotProvided = () => {
                                     width={"w-96"}
                                 />
                             </div>
+
                             <div >Percent Coverage 1: </div>
                             <div className="flex flex-row gap-4">
                                 <ChoiceListbox
@@ -356,7 +348,7 @@ const FirstPageRccNotProvided = () => {
                         </div>
                     )}
 
-                    {runwayConditionDescriptionGravel1 !== "SELECT GRAVEL CONTAMINANT" && dropDownPavedOrGravel === "GRAVEL"
+                    {initialRunwayConditionDescriptionGravel1 !== "SELECT GRAVEL CONTAMINANT" && dropDownPavedOrGravel === "GRAVEL"
                         && contaminationCoverage2 !== 0 && contaminationCoverage2 !== 100 && (
                             <div className="flex flex-row justify-between items-center p-2 mb-2">
                                 <div className="flex px-0">Contaminant 2: </div>
@@ -410,7 +402,7 @@ const FirstPageRccNotProvided = () => {
 
                     <div className="flex flex-row justify-between p-2">
                         <div>Max crosswind:</div>
-                        {(aircraftType === "DHC-8") ? (
+                        {(initialAircraftType === "DHC-8") ? (
                             <div className={`flex ${FinalRccToUse2p0Props === 0 && SeventyPercentBareAndDryUpgradeTo0Props === false ? 'text-red-500' : ''}`}>
                                 {SelectedRccToMaxXwindDash8Props}
                             </div>
@@ -467,3 +459,5 @@ const FirstPageRccNotProvided = () => {
 }
 
 export default FirstPageRccNotProvided;
+
+

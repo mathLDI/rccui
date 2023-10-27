@@ -10,8 +10,11 @@ import PropTypes from "prop-types";
  * @param {String} width - tailwind width, w-72 if undefined
  * @returns
  */
-export const ChoiceListbox = ({ choices, callback, width, reset, resetCallback }) => {
-  const [selected, setSelected] = useState(choices[0]);
+export const ChoiceListbox = ({ choices, callback, width, reset, resetCallback, value }) => {
+
+  console.log("Value in ChoiceListbox:", value);
+
+  const [selected, setSelected] = useState(value);
 
   const changeHandler = (v) => {
     setSelected(v);
@@ -73,4 +76,5 @@ ChoiceListbox.propTypes = {
 
   reset: PropTypes.bool,
   resetCallback: PropTypes.func,
+  value: PropTypes.any
 };

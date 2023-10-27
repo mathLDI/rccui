@@ -10,7 +10,7 @@ import SelectedRccToMaxXwindLanding from '../functions/selectedRccToMaxXwindLand
 import SelectedRccToMaxXwindTakeoff from '../functions/selectedRccToMaxXwindTakeoff.js';
 
 
-const FirstPageRccProvided = () => {
+const FirstPageRccProvided = ({initialAircraftType, setAircraftTypeHandler}) => {
 
     const rwyccChoices = [6, 5, 4, 3, 2, 1, 0]; 
     const buttonAircraftType = ["DHC-8", "HS-748"];
@@ -23,7 +23,6 @@ const FirstPageRccProvided = () => {
     const [correctedLandingDistance, setCorrectedLandingDistance] = useState(0);
     const integerCorrectedLandingDistance = parseInt(correctedLandingDistance, 10);
     const [resetListBox, setResetListBox] = useState(false);
-    const [aircraftType, setAircraftType] = useState("DHC-8")
 
     const rwycc1Handler = (v) => {
         return setRwycc1(v);
@@ -63,7 +62,7 @@ const FirstPageRccProvided = () => {
 
     const SelectedRccToMaxXwindTakeoffProps = SelectedRccToMaxXwindTakeoff({
         ReturnLowestRwyccBtw1and2and3Props,
-        aircraftType
+        initialAircraftType
 
     })
 
@@ -85,14 +84,7 @@ const FirstPageRccProvided = () => {
     };
 
 
-    const setAircraftTypeHandler = (v) => {
-
-        setAircraftType(v);
-    }
-
-
-
-
+ 
     return (
 
         <div>
@@ -103,7 +95,7 @@ const FirstPageRccProvided = () => {
                     <div className="flex flex-row justify-between items-center p-2">
                         <div>Aircraft type:</div>
                         <ChoiceListbox
-                            value={aircraftType}
+                            value={initialAircraftType}
                             choices={buttonAircraftType}
                             callback={setAircraftTypeHandler} />
                     </div>
@@ -225,7 +217,7 @@ const FirstPageRccProvided = () => {
                                 <div className={`flex ${CorrectedLandingRwyccToUseProps === 0 ? 'text-red-500' : ''}`}>
                                     <SelectedRccToMaxXwindLanding
                                         CorrectedLandingRwyccToUseProps={CorrectedLandingRwyccToUseProps}
-                                        aircraftType={aircraftType}
+                                        initialAircraftType={initialAircraftType}
                                     />
 
                                 </div>

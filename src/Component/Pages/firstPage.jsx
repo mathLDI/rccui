@@ -8,16 +8,13 @@ import { Card } from "../Card.jsx"
 
 
 
-const FirstPageSelector = () => {
+const FirstPageSelector = ({ initialRunwayConditionDescriptionGravel1, runwayConditionDescriptionGravel1Handler,
+    initialAircraftType, setAircraftTypeHandler, initialTypeOfReport, setTypeOfReportHandler, 
+    initialContaminationCoverage2, setContaminationCoverage2Handler }) => {
 
     const buttonTypeOfReportChoices = ["RCC Not Provided", "RCC Provided"];
 
-    const [typeOfReport, setTypeOfReport] = useState('RCC Not Provided');
 
-
-    const onDropdownChange = (v) => {
-        return setTypeOfReport(v);
-    }
 
     return (
 
@@ -29,15 +26,31 @@ const FirstPageSelector = () => {
                         <div className="flex flex-row justify-between items-center p-2">
                             <div>Type of Report:</div>
                             <ChoiceListbox
+                                value={initialTypeOfReport}
                                 choices={buttonTypeOfReportChoices}
-                                callback={onDropdownChange}
+                                callback={setTypeOfReportHandler}
                             />
                         </div>
                     </Card>
                 </div>
                 <div>
-                    {typeOfReport === "RCC Not Provided" && <FirstPageRccNotProvided />}
-                    {typeOfReport === "RCC Provided" && <FirstPageRccProvided />}
+                    {initialTypeOfReport === "RCC Not Provided" && <FirstPageRccNotProvided initialRunwayConditionDescriptionGravel1={initialRunwayConditionDescriptionGravel1}
+                        runwayConditionDescriptionGravel1Handler={runwayConditionDescriptionGravel1Handler}
+                        initialAircraftType={initialAircraftType}
+                        setAircraftTypeHandler={setAircraftTypeHandler}
+                        initialTypeOfReport={initialTypeOfReport}
+                        setTypeOfReportHandler={setTypeOfReportHandler}
+                        initialContaminationCoverage2={initialContaminationCoverage2}
+                        setContaminationCoverage2Handler={setContaminationCoverage2Handler}
+
+                    />}
+                    {initialTypeOfReport === "RCC Provided" && <FirstPageRccProvided
+                        initialAircraftType={initialAircraftType}
+                        setAircraftTypeHandler={setAircraftTypeHandler}
+                        initialTypeOfReport={initialTypeOfReport}
+                        setTypeOfReportHandler={setTypeOfReportHandler}
+
+                    />}
                 </div>
             </div>
 

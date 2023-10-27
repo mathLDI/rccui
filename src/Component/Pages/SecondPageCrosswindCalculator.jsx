@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChoiceListbox } from "../ListBox.jsx";
 import { Card } from "../Card.jsx"
 import { CustomButton } from "../Button.jsx";
@@ -7,7 +7,11 @@ import CrosswindComponentNoNegOneDigit from '../functions/crosswindComponentNoNe
 import HeadwindTailwindComponent from '../functions/headwindTailwindComponent.js';
 import HeadwindTailwindComponentNoNegOneDigit from '../functions/headwindTailwindComponentNoNegOneDigit.js';
 
-const SecondPageCrosswindCalculator = () => {
+const SecondPageCrosswindCalculator = ({ initialAircraftType, setAircraftTypeHandler }) => {
+
+    ////the props for initialAircraftType, setAircraftTypeHandler will need to be checked, not working
+    ///all the props and state ar ok,, but dropdown doesnt keep the correct state///
+
 
     const buttonAircraftType = ["DHC-8", "HS-748"];
     const [callDxp] = useState(null);
@@ -16,8 +20,6 @@ const SecondPageCrosswindCalculator = () => {
     const integerWindDirection = parseInt(windDirection, 10);
     const [windSpeed, setWindSpeed] = useState(0);
     const integerWindSpeed = parseInt(windSpeed, 10);
-    const [resetListBox, setResetListBox] = useState(false);
-    const [aircraftType, setAircraftType] = useState("DHC-8")
 
     const integerRunwayHeading = parseInt(runwayHeading, 10);
 
@@ -34,7 +36,6 @@ const SecondPageCrosswindCalculator = () => {
         CrosswindComponentProps,
     })
 
-    console.log("CrosswindComponentNoNegOneDigitProps:", CrosswindComponentNoNegOneDigitProps);
 
 
     const HeadwindTailwindComponentProps = HeadwindTailwindComponent({
@@ -43,7 +44,6 @@ const SecondPageCrosswindCalculator = () => {
         integerWindSpeed,
     })
 
-    console.log("HeadwindTailwindComponentProps:", HeadwindTailwindComponentProps)
 
 
     const HeadwindTailwindComponentNoNegOneDigitProps = HeadwindTailwindComponentNoNegOneDigit({
@@ -51,18 +51,13 @@ const SecondPageCrosswindCalculator = () => {
     })
 
 
-    console.log("HeadwindTailwindComponentNoNegOneDigitProps:", HeadwindTailwindComponentNoNegOneDigitProps)
 
     const resetButtonHandler = () => {
-        setResetListBox(true);
         setWindDirection(0);
         setRunwayHeading(0);
         setWindSpeed(0);
     };
 
-    const setAircraftTypeHandler = (v) => {
-        setAircraftType(v);
-    }
 
 
 
@@ -74,9 +69,9 @@ const SecondPageCrosswindCalculator = () => {
             <Card cardTitle={"Crosswind Calculator"} status={null}>
                 <div>
                     <div className="flex flex-row justify-between items-center p-2">
-                        <div>Aircraft type:</div>
+                        <div>Aircraft type: {initialAircraftType} </div>
                         <ChoiceListbox
-                            value={aircraftType}
+                            value={initialAircraftType}
                             choices={buttonAircraftType}
                             callback={setAircraftTypeHandler} />
                     </div>
@@ -149,7 +144,7 @@ const SecondPageCrosswindCalculator = () => {
             <div >
 
                 <div>
-                    <Card cardTitle={"Results Crosswind (delete)"} status={callDxp}>
+                    <Card cardTitle={"Results Crosswind"} status={callDxp}>
                         <div>
                             <div className="flex flex-row justify-between p-2">
                                 {HeadwindTailwindComponentProps < 0 && (
@@ -193,30 +188,30 @@ const SecondPageCrosswindCalculator = () => {
 
             </div>
 
-            {aircraftType === "DHC-8" && CrosswindComponentNoNegOneDigitProps > 36 &&
+            {initialAircraftType === "DHC-8" && CrosswindComponentNoNegOneDigitProps > 36 &&
                 (<div className="flex flex-row bg-red-600 rounded-md p-2 text-white justify-center items-center">
                     Over Max Crosswind
                 </div>)}
 
-            {aircraftType === "DHC-8" && HeadwindTailwindComponentProps < -10 && HeadwindTailwindComponentProps > -21 &&
+            {initialAircraftType === "DHC-8" && HeadwindTailwindComponentProps < -10 && HeadwindTailwindComponentProps > -21 &&
                 (<div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
                     Over Max Tailwind for the DHC-8 106 and DHC-8 300
                 </div>)}
 
-            {aircraftType === "DHC-8" && HeadwindTailwindComponentProps < -20 &&
+            {initialAircraftType === "DHC-8" && HeadwindTailwindComponentProps < -20 &&
                 (<div className="flex flex-row bg-red-600 rounded-md p-2 text-white justify-center items-center">
                     Over Max Tailwind
                 </div>)}
 
 
 
-            {aircraftType === "HS-748" && CrosswindComponentNoNegOneDigitProps > 30 &&
+            {initialAircraftType === "HS-748" && CrosswindComponentNoNegOneDigitProps > 30 &&
                 (<div className="flex flex-row bg-red-600 rounded-md p-2 text-white justify-center items-center">
                     Over Max Crosswind
                 </div>)}
 
 
-            {aircraftType === "HS-748" && HeadwindTailwindComponentProps < -10 &&
+            {initialAircraftType === "HS-748" && HeadwindTailwindComponentProps < -10 &&
                 (<div className="flex flex-row bg-red-600 rounded-md p-2 text-white justify-center items-center">
                     Over Max Tailwind
                 </div>)}

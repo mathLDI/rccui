@@ -2,7 +2,10 @@
 import SecondPageCrosswindCalculator from '../Pages/SecondPageCrosswindCalculator.jsx'
 
 
-const SecondPage = () => {
+const SecondPage = ({setAircraftTypeHandler, initialAircraftType}) => {
+
+  console.log("initialAircraftType from SecondPage:", initialAircraftType)
+
   return (
 
     <div>
@@ -12,7 +15,7 @@ const SecondPage = () => {
              <div>
               
               
-             {<SecondPageCrosswindCalculator/>}
+             {<SecondPageCrosswindCalculator   initialAircraftType={initialAircraftType} setAircraftTypeHandler={setAircraftTypeHandler}  />}
 
               </div>          
 
@@ -21,16 +24,6 @@ const SecondPage = () => {
 
       </div>
     </div>
-
-
-
-
-
-
-
-
-
-
   );
 }
 
