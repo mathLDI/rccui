@@ -40,9 +40,6 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
 }) => {
 
 
-
-
-
     const allRunwayConditionDescription  = [
         initialRunwayConditionDescriptionGravel1,
         initialRunwayConditionDescriptionPaved2,
@@ -240,7 +237,6 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
     const resetListbox1Handler = () => {
         setResetListBox(false);
     };
-
 
 
     return (

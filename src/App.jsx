@@ -26,7 +26,6 @@ function App() {
 
   const [windSpeed, setWindSpeed] = useState(0);
 
-  console.log("initialAircraftType", typeof(initialAircraftType))
 
 
 
@@ -34,6 +33,8 @@ function App() {
   const handleNavItemClick = (v) => {
     setSelectedNavItem(v);
   }
+
+  
 
   return (
     <div>

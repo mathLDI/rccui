@@ -26,7 +26,7 @@ const HigherPercentageContaminantWithBTW0To22p0 = ({ initialContaminationCoverag
     result = 3;
   } else if (
     contaminationCoverage3AsInteger > contaminationCoverage2AsInteger &&
-    RccToUsePerColumnWithpavedOrGravelSelected1Props > 2
+    RccToUsePerColumnWithpavedOrGravelSelected2Props > 2
   ) {
     result = RccToUsePerColumnWithpavedOrGravelSelected2Props;
   } else {
