@@ -1,7 +1,7 @@
 
-const RccTotalPercentageBasic2p0 = ({contaminationCoverage2, contaminationCoverage3 }) => {
+const RccTotalPercentageBasic2p0 = ({initialContaminationCoverage2, initialContaminationCoverage3 }) => {
 
- const result = parseInt(contaminationCoverage2) + parseInt(contaminationCoverage3);
+ const result = parseInt(initialContaminationCoverage2) + parseInt(initialContaminationCoverage3);
 
  return result;
   

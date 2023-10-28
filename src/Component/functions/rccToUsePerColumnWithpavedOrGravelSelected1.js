@@ -3,7 +3,7 @@
 
 
 const RccToUsePerColumnWithpavedOrGravelSelected1 = ({
-  dropDownPavedOrGravel,
+  initialDropDownPavedOrGravel,
   RccToUsePerColumnGravel1Props,
   RccToUsePerColumnPaved2Props
 }) => {
@@ -11,9 +11,9 @@ const RccToUsePerColumnWithpavedOrGravelSelected1 = ({
 
   let result = -1; // Default value if dropDownPavedOrGravel is not 'GRAVEL' or 'PAVED'
 
-  if (dropDownPavedOrGravel === 'GRAVEL') {
+  if (initialDropDownPavedOrGravel === 'GRAVEL') {
     result = RccToUsePerColumnGravel1Props;
-  } else if (dropDownPavedOrGravel === 'PAVED') {
+  } else if (initialDropDownPavedOrGravel === 'PAVED') {
     result = RccToUsePerColumnPaved2Props;
   }
 

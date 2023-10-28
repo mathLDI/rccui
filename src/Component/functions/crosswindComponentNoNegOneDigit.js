@@ -4,7 +4,7 @@ const CrosswindComponentNoNegOneDigit = ({
 ) => {
 
     return parseFloat(Math.abs(CrosswindComponentProps,
-    ).toFixed(1)) + " kts";
+    ).toFixed(1));
 
 }
 

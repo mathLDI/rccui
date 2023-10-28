@@ -1,11 +1,11 @@
 
-const HigherPercentageContaminantWithBTW0To22p0 = ({ contaminationCoverage2,
-  contaminationCoverage3, RccToUsePerColumnWithpavedOrGravelSelected1Props, RccToUsePerColumnWithpavedOrGravelSelected2Props }) => {
+const HigherPercentageContaminantWithBTW0To22p0 = ({ initialContaminationCoverage2,
+  initialContaminationCoverage3, RccToUsePerColumnWithpavedOrGravelSelected1Props, RccToUsePerColumnWithpavedOrGravelSelected2Props }) => {
 
 
 
-  const contaminationCoverage2AsInteger = parseInt(contaminationCoverage2);
-  const contaminationCoverage3AsInteger = parseInt(contaminationCoverage3);
+  const contaminationCoverage2AsInteger = parseInt(initialContaminationCoverage2);
+  const contaminationCoverage3AsInteger = parseInt(initialContaminationCoverage3);
 
   let result = "null";
 

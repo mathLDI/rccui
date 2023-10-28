@@ -3,8 +3,8 @@
 const FinalRccToUse2p0 = ({
     RccTotalPercentageBasic2p0State,
     fromPercentageState,
-    contaminationCoverage2,
-    contaminationCoverage3,
+    initialContaminationCoverage2,
+    initialContaminationCoverage3,
     LowerRccContaminant2p0Props,
     LowerRccContaminantWithBTW0To22p0Props,
     HigherPercentageContaminant2p0Props,
@@ -12,6 +12,9 @@ const FinalRccToUse2p0 = ({
     RccToUsePerColumnWithpavedOrGravelSelected1Props,
     RccToUsePerColumnWithpavedOrGravelSelected2Props,
 }) => {
+
+
+
 
     let result = "null";
 
@@ -44,29 +47,29 @@ const FinalRccToUse2p0 = ({
         result = "null";
     } else if (
         fromPercentageState === 2 &&
-        contaminationCoverage2 > 25 &&
-        contaminationCoverage3 > 25
+        initialContaminationCoverage2 > 25 &&
+        initialContaminationCoverage3 > 25
     ) {
         result = LowerRccContaminant2p0Props;
     } else if (
         (fromPercentageState === 2 &&
-            contaminationCoverage2 > 25 &&
-            contaminationCoverage3 <= 25) ||
-        (contaminationCoverage3 > 25 && contaminationCoverage2 <= 25)
+            initialContaminationCoverage2 > 25 &&
+            initialContaminationCoverage3 <= 25) ||
+        (initialContaminationCoverage3 > 25 && initialContaminationCoverage2 <= 25)
     ) {
         result = HigherPercentageContaminant2p0Props;
     } else if (
         fromPercentageState === 2 &&
-        contaminationCoverage2 <= 25 &&
-        contaminationCoverage3 <= 25 &&
-        contaminationCoverage2 !== contaminationCoverage3
+        initialContaminationCoverage2 <= 25 &&
+        initialContaminationCoverage3 <= 25 &&
+        initialContaminationCoverage2 !== initialContaminationCoverage3
     ) {
         result = HigherPercentageContaminantWithBTW0To22p0Props;
     } else if (
         fromPercentageState === 2 &&
-        contaminationCoverage2 <= 25 &&
-        contaminationCoverage3 <= 25 &&
-        contaminationCoverage2 === contaminationCoverage3
+        initialContaminationCoverage2 <= 25 &&
+        initialContaminationCoverage3 <= 25 &&
+        initialContaminationCoverage2 === initialContaminationCoverage3
     ) {
         result = LowerRccContaminantWithBTW0To22p0Props;
     } else {

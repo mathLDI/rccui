@@ -1,6 +1,6 @@
 
 const CorrectedLandingRwyccToUse = ({ 
-  rwycc1,
+  initialRwycc1,
   integerCorrectedLandingDistance,
   integerRunwayLength,
   ReturnLowestRwyccBtw1and2Props,
@@ -13,7 +13,7 @@ const CorrectedLandingRwyccToUse = ({
   } else if ((integerCorrectedLandingDistance <=
     integerRunwayLength * 0.3333) &&
     (integerCorrectedLandingDistance !== 0 && integerRunwayLength !== 0)) {
-    return rwycc1;
+    return initialRwycc1;
   } else if ((integerCorrectedLandingDistance >
     integerRunwayLength * 0.3333 &&
     integerCorrectedLandingDistance < integerRunwayLength * 0.6666) &&

@@ -1,9 +1,9 @@
 
 const DispatchPerformanceCheck = ({ FinalRccToUse2p0Props,
-    runwayConditionDescriptionPaved2,
-    runwayConditionDescriptionGravel1,
-    runwayConditionDescriptionPaved4,
-    runwayConditionDescriptionGravel3,
+    initialRunwayConditionDescriptionPaved2,
+    initialRunwayConditionDescriptionGravel1,
+    initialRunwayConditionDescriptionPaved4,
+    initialRunwayConditionDescriptionGravel3,
     RccTotalPercentageBasic2p0State, }) => {
 
     const runwayConditions = [
@@ -33,10 +33,10 @@ const DispatchPerformanceCheck = ({ FinalRccToUse2p0Props,
     const isDispatchVerificationNeeded =
         RccTotalPercentageBasic2p0State > 25 &&
         FinalRccToUse2p0Props <= 3 &&
-        (runwayConditions.includes(runwayConditionDescriptionPaved2) ||
-            runwayConditions.includes(runwayConditionDescriptionGravel1) ||
-            runwayConditions.includes(runwayConditionDescriptionPaved4) ||
-            runwayConditions.includes(runwayConditionDescriptionGravel3)
+        (runwayConditions.includes(initialRunwayConditionDescriptionPaved2) ||
+            runwayConditions.includes(initialRunwayConditionDescriptionGravel1) ||
+            runwayConditions.includes(initialRunwayConditionDescriptionPaved4) ||
+            runwayConditions.includes(initialRunwayConditionDescriptionGravel3)
 
         );
 ///modified below with true of false to test - original code: 

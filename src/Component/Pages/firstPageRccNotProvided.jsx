@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState} from "react";
 import { ChoiceListbox } from "../ListBox.jsx";
 import { Card } from "../Card.jsx"
 import { CustomButton } from "../Button.jsx";
+import PropTypes from "prop-types";
+
 
 
 
@@ -25,9 +27,38 @@ import SeventyPercentBareAndDryUpgradeTo0 from '../functions/seventyPercentBareA
 import OneHundredPercentCompactedSnow from '../functions/oneHundredPercentCompactedSnow.js';
 
 
-const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, runwayConditionDescriptionGravel1Handler, initialAircraftType, setAircraftTypeHandler}) => {
+const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, runwayConditionDescriptionGravel1Handler,
+    initialAircraftType, setAircraftTypeHandler,
+    initialContaminationCoverage2, setContaminationCoverage2Handler,
+    initialContaminationCoverage3, setContaminationCoverage3Handler,
+    initialRunwayConditionDescriptionPaved2, setRunwayConditionDescriptionPaved2Handler,
+    initialDropDownPavedOrGravel, setDropDownPavedOrGravelHandler,
+    initialRunwayConditionDescriptionGravel3, setRunwayConditionDescriptionGravel3Handler,
+    initialRunwayConditionDescriptionPaved4, setRunwayConditionDescriptionPaved4Handler,
+   
 
-console.log("initialAircraftType from firstpagerccnot....:", initialAircraftType)
+}) => {
+
+
+
+
+
+    const allRunwayConditionDescription  = [
+        initialRunwayConditionDescriptionGravel1,
+        initialRunwayConditionDescriptionPaved2,
+        initialRunwayConditionDescriptionGravel3,
+        initialRunwayConditionDescriptionPaved4
+    ];
+
+
+    const allGravelRunwayConditionDescription = [initialRunwayConditionDescriptionGravel1,initialRunwayConditionDescriptionGravel3]
+
+    const allPavedRunwayConditionDescription = [initialRunwayConditionDescriptionPaved2,initialRunwayConditionDescriptionPaved4]
+
+
+    const sumComtamination1and2 = initialContaminationCoverage2 + initialContaminationCoverage3;
+
+    console.log("sumComtamination1and2:", sumComtamination1and2);
 
     const buttonAircraftType = ["DHC-8", "HS-748"];
 
@@ -61,12 +92,6 @@ console.log("initialAircraftType from firstpagerccnot....:", initialAircraftType
 
     const contaminationCoverage2List = [0, 10, 20, 25, 30, 40, 50, 60, 70, 75, 80, 90, 100,];
     const contaminationCoverage3List = [0, 10, 20, 25, 30, 40, 50, 60, 70, 75, 80, 90, 100,];
-    const [runwayConditionDescriptionPaved2, setRunwayConditionDescriptionPaved2] = useState("SELECT PAVED CONTAMINANT");
-    const [runwayConditionDescriptionGravel3, setRunwayConditionDescriptionGravel3] = useState("SELECT GRAVEL CONTAMINANT");
-    const [runwayConditionDescriptionPaved4, setRunwayConditionDescriptionPaved4] = useState("SELECT PAVED CONTAMINANT");
-    const [contaminationCoverage2, setContaminationCoverage2] = useState(0);
-    const [dropDownPavedOrGravel, setDropDownPavedOrGravel] = useState("GRAVEL");
-    const [contaminationCoverage3, setContaminationCoverage3] = useState(0);
     const [showAlert] = useState(false);
     const [callDxp] = useState(null);
     const [resetListBox, setResetListBox] = useState(false);
@@ -74,51 +99,17 @@ console.log("initialAircraftType from firstpagerccnot....:", initialAircraftType
 
 
 
-    const dropdownPercentCoverageTopHandler = (v) => {
-        setContaminationCoverage2(v)
-    }
-
-    const dropdownPercentCoverageLowerHandler = (v) => {
-
-        setContaminationCoverage3(v)
-    }
 
 
-    const runwayConditionDescriptionPaved2Handler = (v) => {
-
-        setRunwayConditionDescriptionPaved2(v);
-    }
-
-    const runwayConditionDescriptionGravel3Handler = (v) => {
-
-        setRunwayConditionDescriptionGravel3(v);
-    }
-
-
-    const runwayConditionDescriptionPaved4Handler = (v) => {
-
-        setRunwayConditionDescriptionPaved4(v);
-    }
-
-
-    const runwayTypeHandler = (v) => {
-
-        setDropDownPavedOrGravel(v);
-        setContaminationCoverage2(0);
-        setContaminationCoverage3(0);
-
-    }
-
-  
 
     ////////////////////////////////////PROPS//////////////////////////////////////////////
 
     const RccTotalPercentageBasic2p0State = RccTotalPercentageBasic2p0({
-        contaminationCoverage2, contaminationCoverage3
+        initialContaminationCoverage2, initialContaminationCoverage3
     });
 
     const fromPercentageState = FromPercentageToContamCounter2p0({
-        contaminationCoverage2, contaminationCoverage3
+        initialContaminationCoverage2, initialContaminationCoverage3
     });
 
     const RccToUsePerColumnGravel1Props = RccToUsePerColumnGravel1({
@@ -127,28 +118,28 @@ console.log("initialAircraftType from firstpagerccnot....:", initialAircraftType
     })
 
     const RccToUsePerColumnPaved2Props = RccToUsePerColumnPaved2({
-        runwayConditionDescriptionPaved2,
+        initialRunwayConditionDescriptionPaved2,
         RccTotalPercentageBasic2p0State
     })
 
     const RccToUsePerColumnPaved4Props = RccToUsePerColumnPaved4({
-        runwayConditionDescriptionPaved4,
+        initialRunwayConditionDescriptionPaved4,
         RccTotalPercentageBasic2p0State
     })
 
     const RccToUsePerColumnGravel3Props = RccToUsePerColumnGravel3({
-        runwayConditionDescriptionGravel3,
+        initialRunwayConditionDescriptionGravel3,
         RccTotalPercentageBasic2p0State
     })
 
     const RccToUsePerColumnWithpavedOrGravelSelected1Props = RccToUsePerColumnWithpavedOrGravelSelected1({
-        dropDownPavedOrGravel,
+        initialDropDownPavedOrGravel,
         RccToUsePerColumnGravel1Props,
         RccToUsePerColumnPaved2Props
     })
 
     const RccToUsePerColumnWithpavedOrGravelSelected2Props = RccToUsePerColumnWithpavedOrGravelSelected2({
-        dropDownPavedOrGravel,
+        initialDropDownPavedOrGravel,
         RccToUsePerColumnGravel3Props,
         RccToUsePerColumnPaved4Props
     })
@@ -160,28 +151,28 @@ console.log("initialAircraftType from firstpagerccnot....:", initialAircraftType
     })
 
     const LowerRccContaminantWithBTW0To22p0Props = LowerRccContaminantWithBTW0To22p0({
-        contaminationCoverage2,
-        contaminationCoverage3,
+        initialContaminationCoverage2,
+        initialContaminationCoverage3,
         RccToUsePerColumnWithpavedOrGravelSelected1Props,
         RccToUsePerColumnWithpavedOrGravelSelected2Props
     })
 
     const HigherPercentageContaminant2p0Props = HigherPercentageContaminant2p0({
-        contaminationCoverage2, contaminationCoverage3,
+        initialContaminationCoverage2, initialContaminationCoverage3,
         RccToUsePerColumnWithpavedOrGravelSelected1Props,
         RccToUsePerColumnWithpavedOrGravelSelected2Props
     })
 
     const HigherPercentageContaminantWithBTW0To22p0Props = HigherPercentageContaminantWithBTW0To22p0({
-        contaminationCoverage2,
-        contaminationCoverage3, RccToUsePerColumnWithpavedOrGravelSelected1Props, RccToUsePerColumnWithpavedOrGravelSelected2Props
+        initialContaminationCoverage2,
+        initialContaminationCoverage3, RccToUsePerColumnWithpavedOrGravelSelected1Props, RccToUsePerColumnWithpavedOrGravelSelected2Props
     })
 
     const FinalRccToUse2p0Props = FinalRccToUse2p0({
         RccTotalPercentageBasic2p0State,
         fromPercentageState,
-        contaminationCoverage2,
-        contaminationCoverage3,
+        initialContaminationCoverage2,
+        initialContaminationCoverage3,
         LowerRccContaminant2p0Props,
         LowerRccContaminantWithBTW0To22p0Props,
         HigherPercentageContaminant2p0Props,
@@ -193,27 +184,27 @@ console.log("initialAircraftType from firstpagerccnot....:", initialAircraftType
     const DispatchPerformanceCheckProps = DispatchPerformanceCheck({
 
         FinalRccToUse2p0Props,
-        runwayConditionDescriptionPaved2,
+        initialRunwayConditionDescriptionPaved2,
         initialRunwayConditionDescriptionGravel1,
-        runwayConditionDescriptionPaved4,
-        runwayConditionDescriptionGravel3,
+        initialRunwayConditionDescriptionPaved4,
+        initialRunwayConditionDescriptionGravel3,
         RccTotalPercentageBasic2p0State,
     })
 
     const SeventyPercentBareAndDryUpgradeTo0Props = SeventyPercentBareAndDryUpgradeTo0({
         RccTotalPercentageBasic2p0State,
         fromPercentageState,
-        runwayConditionDescriptionPaved2,
+        initialRunwayConditionDescriptionPaved2,
         initialRunwayConditionDescriptionGravel1,
-        runwayConditionDescriptionPaved4,
-        runwayConditionDescriptionGravel3,
+        initialRunwayConditionDescriptionPaved4,
+        initialRunwayConditionDescriptionGravel3,
         FinalRccToUse2p0Props
     })
 
     const OneHundredPercentCompactedSnowpProps = OneHundredPercentCompactedSnow({
-        runwayConditionDescriptionPaved2,
-        dropDownPavedOrGravel,
-        contaminationCoverage2
+        initialRunwayConditionDescriptionPaved2,
+        initialDropDownPavedOrGravel,
+        initialContaminationCoverage2
 
     })
 
@@ -235,19 +226,30 @@ console.log("initialAircraftType from firstpagerccnot....:", initialAircraftType
     const resetButtonHandler = () => {
 
         setResetListBox(true);
-        setContaminationCoverage2(0);
+        setContaminationCoverage2Handler(0);
         runwayConditionDescriptionGravel1Handler("SELECT GRAVEL CONTAMINANT");
-        setRunwayConditionDescriptionPaved2("SELECT PAVED CONTAMINANT");
-        setRunwayConditionDescriptionGravel3("SELECT GRAVEL CONTAMINANT");
-        setRunwayConditionDescriptionPaved4("SELECT PAVED CONTAMINANT");
-        setContaminationCoverage3(0);
-        setContaminationCoverage2(0);
+        setRunwayConditionDescriptionPaved2Handler("SELECT PAVED CONTAMINANT");
+        setRunwayConditionDescriptionGravel3Handler("SELECT GRAVEL CONTAMINANT");
+        setRunwayConditionDescriptionPaved4Handler("SELECT PAVED CONTAMINANT");
+        setContaminationCoverage3Handler(0);
+        setAircraftTypeHandler("DHC-8");
+        setDropDownPavedOrGravelHandler("GRAVEL")
     };
 
 
     const resetListbox1Handler = () => {
         setResetListBox(false);
     };
+
+
+const resetPercentageButtonHandler = () => {
+    setResetListBox(false);
+
+    setContaminationCoverage2Handler(0);
+    setContaminationCoverage3Handler(0);
+
+};
+
 
 
 
@@ -260,21 +262,34 @@ console.log("initialAircraftType from firstpagerccnot....:", initialAircraftType
                 <div>
                     <div className="flex flex-row justify-between items-center p-2">
                         <div>Aircraft type:</div>
-                        <ChoiceListbox value={initialAircraftType} choices={buttonAircraftType} callback={setAircraftTypeHandler} />
+                        <ChoiceListbox
+                            value={initialAircraftType}
+                            choices={buttonAircraftType}
+                            callback={setAircraftTypeHandler}
+                            reset={resetListBox}
+                            resetCallback={resetListbox1Handler}
+                        />
                     </div>
 
                     <div className="flex flex-row justify-between items-center p-2">
                         <div>Runway type: </div>
-                        <ChoiceListbox choices={["GRAVEL", "PAVED"]} callback={runwayTypeHandler} />
+                        <ChoiceListbox
+                            value={initialDropDownPavedOrGravel}
+                            choices={["GRAVEL", "PAVED"]}
+                            callback={setDropDownPavedOrGravelHandler} 
+                            reset={resetListBox}
+                            resetCallback={resetListbox1Handler}
+                            />
                     </div>
 
-                    {dropDownPavedOrGravel === "PAVED" && (
+                    {initialDropDownPavedOrGravel === "PAVED" && (
                         <div className="flex flex-row justify-between items-center p-2">
                             <div>Contaminant 1: </div>
                             <div className="flex flex-row gap-4">
                                 <ChoiceListbox
+                                    value={initialRunwayConditionDescriptionPaved2}
                                     choices={runwayConditionDescriptionPaved2List}
-                                    callback={runwayConditionDescriptionPaved2Handler}
+                                    callback={setRunwayConditionDescriptionPaved2Handler}
                                     reset={resetListBox}
                                     resetCallback={resetListbox1Handler}
                                     width={"w-96"} />
@@ -283,27 +298,29 @@ console.log("initialAircraftType from firstpagerccnot....:", initialAircraftType
 
                             <div className="flex flex-row gap-4">
                                 <ChoiceListbox
+                                    value={initialContaminationCoverage2}
                                     choices={contaminationCoverage2List}
-                                    callback={dropdownPercentCoverageTopHandler}
+                                    callback={setContaminationCoverage2Handler}
                                     reset={resetListBox}
-                                    resetCallback={resetListbox1Handler}
+                                    resetCallback={resetPercentageButtonHandler}
                                     width={"w-28"} />
                             </div>
                         </div>
                     )}
 
-                    {runwayConditionDescriptionPaved2 !== "SELECT PAVED CONTAMINANT" && dropDownPavedOrGravel === "PAVED"
-                        && runwayConditionDescriptionPaved2 !== '-Dry Snow or Wet Snow (Any depth) over 100% Compacted Snow' &&
-                        runwayConditionDescriptionPaved2 !== '-100% Compacted Snow: -15ºC and Colder OAT' &&
-                        runwayConditionDescriptionPaved2 !== '-100% Compact Snow: Warmer than -15ºC OAT' &&
-                        runwayConditionDescriptionPaved2 !== '-Water on top of 100% Compacted Snow'
-                        && contaminationCoverage2 !== 0 && contaminationCoverage2 !== 100 && (
+                    {initialRunwayConditionDescriptionPaved2 !== "SELECT PAVED CONTAMINANT" && initialDropDownPavedOrGravel === "PAVED"
+                        && initialRunwayConditionDescriptionPaved2 !== '-Dry Snow or Wet Snow (Any depth) over 100% Compacted Snow' &&
+                        initialRunwayConditionDescriptionPaved2 !== '-100% Compacted Snow: -15ºC and Colder OAT' &&
+                        initialRunwayConditionDescriptionPaved2 !== '-100% Compact Snow: Warmer than -15ºC OAT' &&
+                        initialRunwayConditionDescriptionPaved2 !== '-Water on top of 100% Compacted Snow'
+                        && initialContaminationCoverage2 !== 0 && initialContaminationCoverage2 !== 100 && (
                             <div className="flex flex-row justify-between items-center p-2 mb-2">
                                 <div>Contaminant 2: </div>
                                 <div className="flex flex-row gap-4">
                                     <ChoiceListbox
+                                        value={initialRunwayConditionDescriptionPaved4}
                                         choices={runwayConditionDescriptionPaved4List}
-                                        callback={runwayConditionDescriptionPaved4Handler}
+                                        callback={setRunwayConditionDescriptionPaved4Handler}
                                         reset={resetListBox}
                                         resetCallback={resetListbox1Handler}
                                         width={"w-96"} />
@@ -313,8 +330,9 @@ console.log("initialAircraftType from firstpagerccnot....:", initialAircraftType
                                 <div className="flex flex-row gap-4">
 
                                     <ChoiceListbox
+                                        value={initialContaminationCoverage3}
                                         choices={contaminationCoverage3List}
-                                        callback={dropdownPercentCoverageLowerHandler}
+                                        callback={setContaminationCoverage3Handler}
                                         reset={resetListBox}
                                         resetCallback={resetListbox1Handler}
                                         width={"w-28"} />
@@ -322,7 +340,7 @@ console.log("initialAircraftType from firstpagerccnot....:", initialAircraftType
                             </div>
                         )}
 
-                    {dropDownPavedOrGravel === "GRAVEL" && (
+                    {initialDropDownPavedOrGravel === "GRAVEL" && (
                         <div className="flex flex-row justify-between items-center p-2">
                             <div>Contaminant 1: </div>
                             <div className="flex flex-row gap-4">
@@ -339,23 +357,25 @@ console.log("initialAircraftType from firstpagerccnot....:", initialAircraftType
                             <div >Percent Coverage 1: </div>
                             <div className="flex flex-row gap-4">
                                 <ChoiceListbox
+                                    value={initialContaminationCoverage2}
                                     choices={contaminationCoverage2List}
-                                    callback={dropdownPercentCoverageTopHandler}
+                                    callback={setContaminationCoverage2Handler}
                                     reset={resetListBox}
-                                    resetCallback={resetListbox1Handler}
+                                    resetCallback={resetPercentageButtonHandler}
                                     width={"w-28"} />
                             </div>
                         </div>
                     )}
 
-                    {initialRunwayConditionDescriptionGravel1 !== "SELECT GRAVEL CONTAMINANT" && dropDownPavedOrGravel === "GRAVEL"
-                        && contaminationCoverage2 !== 0 && contaminationCoverage2 !== 100 && (
+                    {initialRunwayConditionDescriptionGravel1 !== "SELECT GRAVEL CONTAMINANT" && initialDropDownPavedOrGravel === "GRAVEL"
+                        && initialContaminationCoverage2 !== 0 && initialContaminationCoverage2 !== 100 && (
                             <div className="flex flex-row justify-between items-center p-2 mb-2">
                                 <div className="flex px-0">Contaminant 2: </div>
                                 <div className="flex flex-row gap-4">
                                     <ChoiceListbox
+                                        value={initialRunwayConditionDescriptionGravel3}
                                         choices={runwayConditionDescriptionGravel3List}
-                                        callback={runwayConditionDescriptionGravel3Handler}
+                                        callback={setRunwayConditionDescriptionGravel3Handler}
                                         reset={resetListBox}
                                         resetCallback={resetListbox1Handler}
                                         width={"w-96"} />
@@ -363,8 +383,9 @@ console.log("initialAircraftType from firstpagerccnot....:", initialAircraftType
                                 <div>Percent Coverage 2: </div>
                                 <div className="flex flex-row gap-4">
                                     <ChoiceListbox
+                                        value={initialContaminationCoverage3}
                                         choices={contaminationCoverage3List}
-                                        callback={dropdownPercentCoverageLowerHandler}
+                                        callback={setContaminationCoverage3Handler}
                                         reset={resetListBox}
                                         resetCallback={resetListbox1Handler}
                                         width={"w-28"} />
@@ -374,8 +395,9 @@ console.log("initialAircraftType from firstpagerccnot....:", initialAircraftType
 
                     <div className="p-2">
                         <CustomButton
-                            title={"Reset Contaminant"} onClickCallback={resetButtonHandler} />
+                            title={"Reset"} onClickCallback={resetButtonHandler} />
                     </div>
+                    
                 </div>
 
             </Card>
@@ -388,8 +410,8 @@ console.log("initialAircraftType from firstpagerccnot....:", initialAircraftType
                             <FinalRccToUse2p0
                                 RccTotalPercentageBasic2p0State={RccTotalPercentageBasic2p0State}
                                 fromPercentageState={fromPercentageState}
-                                contaminationCoverage2={contaminationCoverage2}
-                                contaminationCoverage3={contaminationCoverage3}
+                                initialContaminationCoverage2={initialContaminationCoverage2}
+                                initialContaminationCoverage3={initialContaminationCoverage3}
                                 LowerRccContaminant2p0Props={LowerRccContaminant2p0Props}
                                 LowerRccContaminantWithBTW0To22p0Props={LowerRccContaminantWithBTW0To22p0Props}
                                 HigherPercentageContaminant2p0Props={HigherPercentageContaminant2p0Props}
@@ -410,35 +432,120 @@ console.log("initialAircraftType from firstpagerccnot....:", initialAircraftType
 
                         }
                     </div>
+
                     {showAlert && <div className="flex flex-row bg-red-500 rounded-md p-2 text-white">Please contact dispatch</div>}
 
                 </div>
 
-                {DispatchPerformanceCheckProps === true && OneHundredPercentCompactedSnowpProps === false &&
-                    (<div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
-                        Dispatch may have to verify the takeoff or Landing distances on the DASH8
-                    </div>)}
 
-                {SeventyPercentBareAndDryUpgradeTo0Props === true && (<div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
-                    Code 0 does not need to be considered  when the runway is 70% bare and dry or 70% bare and wet,
-                    in this case upgrade code 0 to 1. Dispatch may have to verify the takeoff or Landing distances on the DASH8
-                </div>)}
 
-                {(runwayConditionDescriptionPaved2.includes("100") && contaminationCoverage2 !== 100) ?
-                    (
+
+
+                <div style={{ marginBottom: '10px' }}>
+                    {DispatchPerformanceCheckProps === true && OneHundredPercentCompactedSnowpProps === false && FinalRccToUse2p0Props != 0 && sumComtamination1and2 <= 100 && (
+                        <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
+                            Dispatch may have to verify the takeoff or Landing distances on the DASH8
+                        </div>
+                    )}
+                </div>
+
+                <div style={{ marginBottom: '10px' }}>
+                    {SeventyPercentBareAndDryUpgradeTo0Props === true && (
+                        <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
+                            Code 0 does not need to be considered when the runway is 70% bare and dry or 70% bare and wet, in this case upgrade code 0 to 1. Dispatch may have to verify the takeoff or Landing distances on the DASH8
+                        </div>
+                    )}
+                </div>
+
+                <div style={{ marginBottom: '10px' }}>
+                    {initialRunwayConditionDescriptionPaved2.includes("100") && initialDropDownPavedOrGravel === "PAVED" && initialContaminationCoverage2 !== 100 && (
                         <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
                             Runway must be completely covered with Compacted Snow to select this contaminant. If that is the case, select 100%
                         </div>
-                    ) : null
-                }
+                    )}
+                </div>
 
-                {(FinalRccToUse2p0Props === true) ?
-                    (
+                <div style={{ marginBottom: '10px' }}>
+                    {FinalRccToUse2p0Props === true && (
                         <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
-                            Contaminant(s) over 100% !
+                            Contaminant(s) over 100%!
                         </div>
-                    ) : null
-                }
+                    )}
+                </div>
+
+                {/**CONTAMINATION DEPTH WARNING BELOW */}
+
+                <div style={{ marginBottom: '10px' }}>
+                    {initialAircraftType === "DHC-8" && initialDropDownPavedOrGravel === "PAVED" && FinalRccToUse2p0Props != 0 && allPavedRunwayConditionDescription.includes('-Dry Snow more than 1.0 in depth') && (
+                        <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
+                            Max Dry Snow Depth = 2.0 in
+                        </div>
+                    )}
+                </div>
+
+
+                <div style={{ marginBottom: '10px' }}>
+                    {initialAircraftType === "DHC-8" && initialDropDownPavedOrGravel === "GRAVEL" && FinalRccToUse2p0Props != 0 && allGravelRunwayConditionDescription.includes('-Dry Snow more than 1.0 in depth') && (
+                        <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
+                            Max Dry Snow Depth = 2.0 in
+                        </div>
+                    )}
+                </div>
+
+                <div style={{ marginBottom: '10px' }}>
+                    {initialAircraftType === "DHC-8" &&  sumComtamination1and2 < 40 && FinalRccToUse2p0Props != 0 && initialDropDownPavedOrGravel === "GRAVEL" && 
+                    allGravelRunwayConditionDescription.includes('-Wet Snow greater than 0.13 in depth over Compacted snow/gravel mix') && (
+                        <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
+                            Max Wet Snow Depth = 1.0 in
+                        </div>
+                    )}
+                </div>
+
+
+                <div style={{ marginBottom: '10px' }}>
+                    {initialAircraftType === "DHC-8" && initialDropDownPavedOrGravel === "PAVED" && FinalRccToUse2p0Props != 0 && allRunwayConditionDescription.includes('-Wet Snow greater than 0.13 in depth') && (
+                        <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
+                            Max Wet Snow Depth = 1.0 in
+                        </div>
+                    )}
+                </div>
+
+                <div style={{ marginBottom: '10px' }}>
+                    {initialAircraftType === "DHC-8" && initialDropDownPavedOrGravel === "PAVED" && FinalRccToUse2p0Props != 0 && allRunwayConditionDescription.includes('-Water Greater than 0.13 in depth') && (
+                        <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
+                            Max Water Depth = 0.5 in
+                        </div>
+                    )}
+                </div>
+
+
+                <div style={{ marginBottom: '10px' }}>
+                    {initialAircraftType === "DHC-8" && initialDropDownPavedOrGravel === "PAVED" && FinalRccToUse2p0Props != 0 && allRunwayConditionDescription.includes('-Slush Greater than 0.13 in depth') && (
+                        <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
+                            Max Slush Depth = 0.5 in
+                        </div>
+                    )}
+                </div>
+
+
+                <div style={{ marginBottom: '10px' }}>
+                    {initialAircraftType === "DHC-8" && initialDropDownPavedOrGravel === "GRAVEL" && FinalRccToUse2p0Props != 0 && allRunwayConditionDescription.includes('-Water Greater than 0.13 in depth') && (
+                        <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
+                            Max Water Depth = 0.5 in
+                        </div>
+                    )}
+                </div>
+
+
+                <div style={{ marginBottom: '10px' }}>
+                    {initialAircraftType === "DHC-8" && initialDropDownPavedOrGravel === "GRAVEL" &&  allRunwayConditionDescription.includes('-Slush Greater than 0.13 in depth') && (
+                        <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
+                            Max Slush Depth = 0.5 in
+                        </div>
+                    )}
+                </div>
+
+
 
             </Card>
             {/****RWYCCC NOT PROVIDED CARS ABOVE****/}
@@ -460,4 +567,24 @@ console.log("initialAircraftType from firstpagerccnot....:", initialAircraftType
 
 export default FirstPageRccNotProvided;
 
+FirstPageRccNotProvided.propTypes = {
+    initialRunwayConditionDescriptionPaved2: PropTypes.array,
+    initialContaminationCoverage2: PropTypes.number,
+    initialRunwayConditionDescriptionGravel3: PropTypes.array, 
+    initialRunwayConditionDescriptionPaved4:PropTypes.array, 
+    initialRunwayConditionDescriptionGravel1: PropTypes.array, 
+    runwayConditionDescriptionGravel1Handler: PropTypes.array,
+    setRunwayConditionDescriptionPaved2Handler: PropTypes.array,
+    setRunwayConditionDescriptionGravel3Handler: PropTypes.array,
+    setRunwayConditionDescriptionPaved4Handler: PropTypes.array,
+    initialAircraftType: PropTypes.string,
+    setAircraftTypeHandler: PropTypes.string,
+    setContaminationCoverage2Handler: PropTypes.number,
+    initialContaminationCoverage3: PropTypes.number, 
+    setContaminationCoverage3Handler: PropTypes.number,
+    initialDropDownPavedOrGravel: PropTypes.string, 
+    setDropDownPavedOrGravelHandler: PropTypes.string,
 
+
+
+};

@@ -1,11 +1,11 @@
 
-const ReturnLowestRwyccBtw1and2 = ({ rwycc1, rwycc2 }) => {
+const ReturnLowestRwyccBtw1and2 = ({ initialRwycc1, initialRwycc2 }) => {
  
   
-  if (rwycc1 < rwycc2) {
-    return rwycc1;
+  if (initialRwycc1 < initialRwycc2) {
+    return initialRwycc1;
   } else {
-    return rwycc2;
+    return initialRwycc2;
   }
   
 };

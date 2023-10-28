@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
  * @param {String} width - tailwind width, w-72 if undefined
  * @returns
  */
-export const ChoiceListbox = ({ choices, callback, width, reset, resetCallback, value }) => {
+export const ChoiceListbox = ({ choices, callback, width, reset, resetCallback, value, }) => {
 
   console.log("Value in ChoiceListbox:", value);
 
