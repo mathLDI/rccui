@@ -242,16 +242,6 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
     };
 
 
-const resetPercentageButtonHandler = () => {
-    setResetListBox(false);
-
-    setContaminationCoverage2Handler(0);
-    setContaminationCoverage3Handler(0);
-
-};
-
-
-
 
     return (
 
@@ -302,7 +292,7 @@ const resetPercentageButtonHandler = () => {
                                     choices={contaminationCoverage2List}
                                     callback={setContaminationCoverage2Handler}
                                     reset={resetListBox}
-                                    resetCallback={resetPercentageButtonHandler}
+                                    resetCallback={resetListbox1Handler}
                                     width={"w-28"} />
                             </div>
                         </div>
@@ -361,7 +351,7 @@ const resetPercentageButtonHandler = () => {
                                     choices={contaminationCoverage2List}
                                     callback={setContaminationCoverage2Handler}
                                     reset={resetListBox}
-                                    resetCallback={resetPercentageButtonHandler}
+                                    resetCallback={resetListbox1Handler}
                                     width={"w-28"} />
                             </div>
                         </div>
