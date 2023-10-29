@@ -34,12 +34,13 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
     initialAircraftType, setAircraftTypeHandler,
     initialContaminationCoverage2, setContaminationCoverage2Handler,
     initialContaminationCoverage3, setContaminationCoverage3Handler,
+    initialContaminationCoverage1, setContaminationCoverage1Handler,
+    initialContaminationCoverage4, setContaminationCoverage4Handler,
     initialRunwayConditionDescriptionPaved2, setRunwayConditionDescriptionPaved2Handler,
     initialDropDownPavedOrGravel, setDropDownPavedOrGravelHandler,
     initialRunwayConditionDescriptionGravel3, setRunwayConditionDescriptionGravel3Handler,
     initialRunwayConditionDescriptionPaved4, setRunwayConditionDescriptionPaved4Handler,
-    initialContaminationCoverage1, setContaminationCoverage1Handler,
-    initialContaminationCoverage4, setContaminationCoverage4Handler
+
 
 }) => {
 
@@ -410,37 +411,40 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
                 <div>
                     <div className="flex flex-row justify-between p-2">
                         <div>RCC code:</div>
-                       
 
-                            <div className={`flex ${FinalRccToUse2p0Props === 0 && SeventyPercentBareAndDryUpgradeTo0Props === false ? 'text-red-500' : ''}`}>
-                                <FinalRccToUse2p0
-                                    RccTotalPercentageBasic2p0State={RccTotalPercentageBasic2p0State}
-                                    fromPercentageState={fromPercentageState}
-                                    TopPercentageSelectorProps={TopPercentageSelectorProps}
-                                    BottomPercentageSelectorProps={BottomPercentageSelectorProps}
-                                    LowerRccContaminant2p0Props={LowerRccContaminant2p0Props}
-                                    LowerRccContaminantWithBTW0To22p0Props={LowerRccContaminantWithBTW0To22p0Props}
-                                    HigherPercentageContaminant2p0Props={HigherPercentageContaminant2p0Props}
-                                    HigherPercentageContaminantWithBTW0To22p0Props={HigherPercentageContaminantWithBTW0To22p0Props}
-                                    RccToUsePerColumnWithpavedOrGravelSelected1Props={RccToUsePerColumnWithpavedOrGravelSelected1Props}
-                                    RccToUsePerColumnWithpavedOrGravelSelected2Props={RccToUsePerColumnWithpavedOrGravelSelected2Props}
-                                />
-
+                        {initialRunwayConditionDescriptionPaved2.includes("100") && initialContaminationCoverage2 !== 100 ? (
+                            <div className="flex text-white">
+                                {FinalRccToUse2p0Props}
                             </div>
-
-
+                        ) : (
+                            <div className={`flex ${FinalRccToUse2p0Props === 0 && SeventyPercentBareAndDryUpgradeTo0Props === false ? 'text-red-500' : 'text-black'}`}>
+                                {FinalRccToUse2p0Props}
+                            </div>
+                        )}
                     </div>
+
 
                     <div className="flex flex-row justify-between p-2">
                         <div>Max crosswind:</div>
-                        {(initialAircraftType === "DHC-8") ? (
-                            <div className={`flex ${FinalRccToUse2p0Props === 0 && SeventyPercentBareAndDryUpgradeTo0Props === false ? 'text-red-500' : ''}`}>
-                                {SelectedRccToMaxXwindDash8Props}
-                            </div>
-                        ) : <div> {SelectedRccToMaxXwindHS748Props}</div>
-
-                        }
+                        {initialAircraftType === "DHC-8" ? (
+                            initialRunwayConditionDescriptionPaved2.includes("100") && initialContaminationCoverage2 !== 100 ? (
+                                <div className="text-white">
+                                    {SelectedRccToMaxXwindDash8Props}
+                                </div>
+                            ) : (
+                                <div className={`flex ${FinalRccToUse2p0Props === 0 && SeventyPercentBareAndDryUpgradeTo0Props === false ? 'text-red-500' : 'text-black'}`}>
+                                    {SelectedRccToMaxXwindDash8Props}
+                                </div>
+                            )
+                        ) : (
+                            <div>{SelectedRccToMaxXwindHS748Props}</div>
+                        )}
                     </div>
+
+
+
+
+
 
                     {showAlert && <div className="flex flex-row bg-red-500 rounded-md p-2 text-white">Please contact dispatch</div>}
 
