@@ -1,12 +1,12 @@
 
 
-const FromPercentageToContamCounter2p0 = ({initialContaminationCoverage2,initialContaminationCoverage3}) => {
+const FromPercentageToContamCounter2p0 = ({TopPercentageSelectorProps,BottomPercentageSelectorProps}) => {
 
 
   let result = -1;
 
-  const contaminationCoverage2ToInt = parseInt(initialContaminationCoverage2);
-  const contaminationCoverage3ToInt = parseInt(initialContaminationCoverage3);
+  const contaminationCoverage2ToInt = parseInt(TopPercentageSelectorProps);
+  const contaminationCoverage3ToInt = parseInt(BottomPercentageSelectorProps);
 
   if (contaminationCoverage2ToInt === 0 && contaminationCoverage3ToInt === 0) {
     result = 0;

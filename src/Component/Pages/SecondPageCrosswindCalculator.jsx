@@ -171,7 +171,7 @@ const SecondPageCrosswindCalculator = ({ initialAircraftType, setAircraftTypeHan
                                 )}
 
                                 <div >
-                                    {HeadwindTailwindComponentNoNegOneDigitProps}
+                                    {HeadwindTailwindComponentNoNegOneDigitProps} kts
                                 </div>
                             </div>
 
@@ -187,7 +187,7 @@ const SecondPageCrosswindCalculator = ({ initialAircraftType, setAircraftTypeHan
                                     <div>Right Crosswind:</div>)}
 
                                 <div >
-                                    {CrosswindComponentNoNegOneDigitProps}
+                                    {CrosswindComponentNoNegOneDigitProps} kts
                                 </div>
                             </div>
 
@@ -244,14 +244,9 @@ const SecondPageCrosswindCalculator = ({ initialAircraftType, setAircraftTypeHan
             </div>
 
 
-
         </div>
 
-
-
-
     );
-
 
 }
 

@@ -16,6 +16,12 @@ function App() {
   const [typeOfReport, setTypeOfReport] = useState('RCC Not Provided');
   const [contaminationCoverage2, setContaminationCoverage2] = useState(0);
   const [contaminationCoverage3, setContaminationCoverage3] = useState(0);
+
+
+  const [contaminationCoverage1, setContaminationCoverage1] = useState(0);
+  const [contaminationCoverage4, setContaminationCoverage4] = useState(0);
+
+
   const [rwycc1, setRwycc1] = useState(6);
   const [rwycc2, setRwycc2] = useState(6);
   const [rwycc3, setRwycc3] = useState(6);
@@ -55,6 +61,10 @@ function App() {
           initialDropDownPavedOrGravel={dropDownPavedOrGravel} setDropDownPavedOrGravelHandler={setDropDownPavedOrGravel}
           initialContaminationCoverage2={contaminationCoverage2} setContaminationCoverage2Handler={setContaminationCoverage2}
           initialContaminationCoverage3={contaminationCoverage3} setContaminationCoverage3Handler={setContaminationCoverage3}
+
+          initialContaminationCoverage1={contaminationCoverage1} setContaminationCoverage1Handler={setContaminationCoverage1}
+          initialContaminationCoverage4={contaminationCoverage4} setContaminationCoverage4Handler={setContaminationCoverage4}
+
           initialRwycc1={rwycc1} setRwycc1Handler={setRwycc1}
           initialRwycc2={rwycc2} setRwycc2Handler={setRwycc2}
           initialRwycc3={rwycc3} setRwycc3Handler={setRwycc3}

@@ -17,7 +17,8 @@ const FirstPageSelector = ({ initialRunwayConditionDescriptionGravel1, runwayCon
     initialRunwayConditionDescriptionPaved4, setRunwayConditionDescriptionPaved4Handler,
     initialContaminationCoverage3,setContaminationCoverage3Handler, initialRwycc1 , setRwycc1Handler,
     initialRwycc2, setRwycc2Handler, initialRwycc3, setRwycc3Handler, initialCorrectedLandingDistance,
-    setCorrectedLandingDistanceHandler,initialRunwayLength, setRunwayLengthHandler,
+    setCorrectedLandingDistanceHandler,initialRunwayLength, setRunwayLengthHandler, initialContaminationCoverage1,
+    setContaminationCoverage1Handler, initialContaminationCoverage4 , setContaminationCoverage4Handler,
 
 }) => {
 
@@ -60,7 +61,10 @@ const FirstPageSelector = ({ initialRunwayConditionDescriptionGravel1, runwayCon
                         setRunwayConditionDescriptionPaved4Handler={setRunwayConditionDescriptionPaved4Handler}
                         initialContaminationCoverage3={initialContaminationCoverage3}
                         setContaminationCoverage3Handler={setContaminationCoverage3Handler}
-                       
+                        initialContaminationCoverage4={initialContaminationCoverage4}
+                        setContaminationCoverage4Handler={setContaminationCoverage4Handler}
+                        initialContaminationCoverage1={initialContaminationCoverage1}
+                        setContaminationCoverage1Handler={setContaminationCoverage1Handler}
 
                     />}
                     {initialTypeOfReport === "RCC Provided" && <FirstPageRccProvided
@@ -122,6 +126,11 @@ FirstPageSelector.propTypes = {
     setCorrectedLandingDistanceHandler: PropTypes.number,
     initialRunwayLength: PropTypes.number,
     setRunwayLengthHandler: PropTypes.number,
+
+    initialContaminationCoverage1:PropTypes.number, 
+    setContaminationCoverage1Handler: PropTypes.array, 
+    initialContaminationCoverage4:PropTypes.number, 
+    setContaminationCoverage4Handler: PropTypes.array, 
 
 
 };

@@ -12,8 +12,6 @@ import PropTypes from "prop-types";
  */
 export const ChoiceListbox = ({ choices, callback, width, reset, resetCallback, value, }) => {
 
-  console.log("Value in ChoiceListbox:", value);
-
   const [selected, setSelected] = useState(value);
 
   const changeHandler = (v) => {

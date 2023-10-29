@@ -1,6 +1,6 @@
 
 
-const HigherPercentageContaminant2p0 = ({ initialContaminationCoverage2, initialContaminationCoverage3,
+const HigherPercentageContaminant2p0 = ({ TopPercentageSelectorProps, BottomPercentageSelectorProps,
     RccToUsePerColumnWithpavedOrGravelSelected1Props, RccToUsePerColumnWithpavedOrGravelSelected2Props }) => {
   
     let result = "null"; // Default value if dropDownPavedOrGravel is not 'GRAVEL' or 'PAVED'
@@ -10,9 +10,9 @@ const HigherPercentageContaminant2p0 = ({ initialContaminationCoverage2, initial
       RccToUsePerColumnWithpavedOrGravelSelected2Props === -1
     ) {
       result = 'Contaminant not selected';
-    } else if (initialContaminationCoverage2 > initialContaminationCoverage3) {
+    } else if (TopPercentageSelectorProps > BottomPercentageSelectorProps) {
       result = RccToUsePerColumnWithpavedOrGravelSelected1Props;
-    } else if (initialContaminationCoverage3 > initialContaminationCoverage2) {
+    } else if (BottomPercentageSelectorProps > TopPercentageSelectorProps) {
       result = RccToUsePerColumnWithpavedOrGravelSelected2Props;
     } else {
       result = '333';

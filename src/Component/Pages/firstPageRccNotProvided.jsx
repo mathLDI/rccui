@@ -1,4 +1,4 @@
-import { useState} from "react";
+import { useState } from "react";
 import { ChoiceListbox } from "../ListBox.jsx";
 import { Card } from "../Card.jsx"
 import { CustomButton } from "../Button.jsx";
@@ -25,6 +25,9 @@ import SelectedRccToMaxXwindHS748 from '../functions/selectedRccToMaxXwindHS748.
 import DispatchPerformanceCheck from '../functions/dispatchPerformanceCheck.js';
 import SeventyPercentBareAndDryUpgradeTo0 from '../functions/seventyPercentBareAndDryUpgradeTo0.js';
 import OneHundredPercentCompactedSnow from '../functions/oneHundredPercentCompactedSnow.js';
+import BottomPercentageSelector from '../functions/bottomPercentageSelector.js';
+import TopPercentageSelector from '../functions/topPercentageSelector.js';
+
 
 
 const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, runwayConditionDescriptionGravel1Handler,
@@ -35,12 +38,13 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
     initialDropDownPavedOrGravel, setDropDownPavedOrGravelHandler,
     initialRunwayConditionDescriptionGravel3, setRunwayConditionDescriptionGravel3Handler,
     initialRunwayConditionDescriptionPaved4, setRunwayConditionDescriptionPaved4Handler,
-   
+    initialContaminationCoverage1, setContaminationCoverage1Handler,
+    initialContaminationCoverage4, setContaminationCoverage4Handler
 
 }) => {
 
 
-    const allRunwayConditionDescription  = [
+    const allRunwayConditionDescription = [
         initialRunwayConditionDescriptionGravel1,
         initialRunwayConditionDescriptionPaved2,
         initialRunwayConditionDescriptionGravel3,
@@ -48,14 +52,10 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
     ];
 
 
-    const allGravelRunwayConditionDescription = [initialRunwayConditionDescriptionGravel1,initialRunwayConditionDescriptionGravel3]
+    const allGravelRunwayConditionDescription = [initialRunwayConditionDescriptionGravel1, initialRunwayConditionDescriptionGravel3]
 
-    const allPavedRunwayConditionDescription = [initialRunwayConditionDescriptionPaved2,initialRunwayConditionDescriptionPaved4]
+    const allPavedRunwayConditionDescription = [initialRunwayConditionDescriptionPaved2, initialRunwayConditionDescriptionPaved4]
 
-
-    const sumComtamination1and2 = initialContaminationCoverage2 + initialContaminationCoverage3;
-
-    console.log("sumComtamination1and2:", sumComtamination1and2);
 
     const buttonAircraftType = ["DHC-8", "HS-748"];
 
@@ -93,20 +93,30 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
     const [callDxp] = useState(null);
     const [resetListBox, setResetListBox] = useState(false);
 
-
-
-
-
-
-
     ////////////////////////////////////PROPS//////////////////////////////////////////////
 
+    const TopPercentageSelectorProps = TopPercentageSelector({
+        initialDropDownPavedOrGravel,
+        initialContaminationCoverage1,
+        initialContaminationCoverage2,
+    })
+
+    const BottomPercentageSelectorProps = BottomPercentageSelector({
+        initialDropDownPavedOrGravel,
+        initialContaminationCoverage3,
+        initialContaminationCoverage4,
+    })
+
+
+    const sumOfTopAndBottomPercentage = TopPercentageSelectorProps + BottomPercentageSelectorProps;
+
+
     const RccTotalPercentageBasic2p0State = RccTotalPercentageBasic2p0({
-        initialContaminationCoverage2, initialContaminationCoverage3
+        TopPercentageSelectorProps, BottomPercentageSelectorProps
     });
 
     const fromPercentageState = FromPercentageToContamCounter2p0({
-        initialContaminationCoverage2, initialContaminationCoverage3
+        TopPercentageSelectorProps, BottomPercentageSelectorProps
     });
 
     const RccToUsePerColumnGravel1Props = RccToUsePerColumnGravel1({
@@ -148,28 +158,30 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
     })
 
     const LowerRccContaminantWithBTW0To22p0Props = LowerRccContaminantWithBTW0To22p0({
-        initialContaminationCoverage2,
-        initialContaminationCoverage3,
+        TopPercentageSelectorProps,
+        BottomPercentageSelectorProps,
         RccToUsePerColumnWithpavedOrGravelSelected1Props,
         RccToUsePerColumnWithpavedOrGravelSelected2Props
     })
 
     const HigherPercentageContaminant2p0Props = HigherPercentageContaminant2p0({
-        initialContaminationCoverage2, initialContaminationCoverage3,
+        TopPercentageSelectorProps, BottomPercentageSelectorProps,
         RccToUsePerColumnWithpavedOrGravelSelected1Props,
         RccToUsePerColumnWithpavedOrGravelSelected2Props
     })
 
     const HigherPercentageContaminantWithBTW0To22p0Props = HigherPercentageContaminantWithBTW0To22p0({
-        initialContaminationCoverage2,
-        initialContaminationCoverage3, RccToUsePerColumnWithpavedOrGravelSelected1Props, RccToUsePerColumnWithpavedOrGravelSelected2Props
+        TopPercentageSelectorProps,
+        BottomPercentageSelectorProps,
+        RccToUsePerColumnWithpavedOrGravelSelected1Props,
+        RccToUsePerColumnWithpavedOrGravelSelected2Props
     })
 
     const FinalRccToUse2p0Props = FinalRccToUse2p0({
         RccTotalPercentageBasic2p0State,
         fromPercentageState,
-        initialContaminationCoverage2,
-        initialContaminationCoverage3,
+        TopPercentageSelectorProps,
+        BottomPercentageSelectorProps,
         LowerRccContaminant2p0Props,
         LowerRccContaminantWithBTW0To22p0Props,
         HigherPercentageContaminant2p0Props,
@@ -201,7 +213,7 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
     const OneHundredPercentCompactedSnowpProps = OneHundredPercentCompactedSnow({
         initialRunwayConditionDescriptionPaved2,
         initialDropDownPavedOrGravel,
-        initialContaminationCoverage2
+        TopPercentageSelectorProps
 
     })
 
@@ -223,12 +235,16 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
     const resetButtonHandler = () => {
 
         setResetListBox(true);
+        setContaminationCoverage1Handler(0);
         setContaminationCoverage2Handler(0);
+        setContaminationCoverage3Handler(0);
+        setContaminationCoverage4Handler(0);
         runwayConditionDescriptionGravel1Handler("SELECT GRAVEL CONTAMINANT");
         setRunwayConditionDescriptionPaved2Handler("SELECT PAVED CONTAMINANT");
         setRunwayConditionDescriptionGravel3Handler("SELECT GRAVEL CONTAMINANT");
         setRunwayConditionDescriptionPaved4Handler("SELECT PAVED CONTAMINANT");
-        setContaminationCoverage3Handler(0);
+
+
         setAircraftTypeHandler("DHC-8");
         setDropDownPavedOrGravelHandler("GRAVEL")
     };
@@ -237,6 +253,8 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
     const resetListbox1Handler = () => {
         setResetListBox(false);
     };
+
+
 
 
     return (
@@ -262,10 +280,10 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
                         <ChoiceListbox
                             value={initialDropDownPavedOrGravel}
                             choices={["GRAVEL", "PAVED"]}
-                            callback={setDropDownPavedOrGravelHandler} 
+                            callback={setDropDownPavedOrGravelHandler}
                             reset={resetListBox}
                             resetCallback={resetListbox1Handler}
-                            />
+                        />
                     </div>
 
                     {initialDropDownPavedOrGravel === "PAVED" && (
@@ -299,7 +317,7 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
                         initialRunwayConditionDescriptionPaved2 !== '-100% Compacted Snow: -15ºC and Colder OAT' &&
                         initialRunwayConditionDescriptionPaved2 !== '-100% Compact Snow: Warmer than -15ºC OAT' &&
                         initialRunwayConditionDescriptionPaved2 !== '-Water on top of 100% Compacted Snow'
-                        && initialContaminationCoverage2 !== 0 && initialContaminationCoverage2 !== 100 && (
+                        && TopPercentageSelectorProps !== 0 && TopPercentageSelectorProps !== 100 && (
                             <div className="flex flex-row justify-between items-center p-2 mb-2">
                                 <div>Contaminant 2: </div>
                                 <div className="flex flex-row gap-4">
@@ -316,9 +334,9 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
                                 <div className="flex flex-row gap-4">
 
                                     <ChoiceListbox
-                                        value={initialContaminationCoverage3}
+                                        value={initialContaminationCoverage4}
                                         choices={contaminationCoverage3List}
-                                        callback={setContaminationCoverage3Handler}
+                                        callback={setContaminationCoverage4Handler}
                                         reset={resetListBox}
                                         resetCallback={resetListbox1Handler}
                                         width={"w-28"} />
@@ -343,9 +361,9 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
                             <div >Percent Coverage 1: </div>
                             <div className="flex flex-row gap-4">
                                 <ChoiceListbox
-                                    value={initialContaminationCoverage2}
+                                    value={initialContaminationCoverage1}
                                     choices={contaminationCoverage2List}
-                                    callback={setContaminationCoverage2Handler}
+                                    callback={setContaminationCoverage1Handler}
                                     reset={resetListBox}
                                     resetCallback={resetListbox1Handler}
                                     width={"w-28"} />
@@ -354,7 +372,7 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
                     )}
 
                     {initialRunwayConditionDescriptionGravel1 !== "SELECT GRAVEL CONTAMINANT" && initialDropDownPavedOrGravel === "GRAVEL"
-                        && initialContaminationCoverage2 !== 0 && initialContaminationCoverage2 !== 100 && (
+                        && initialContaminationCoverage1 !== 0 && TopPercentageSelectorProps !== 100 && (
                             <div className="flex flex-row justify-between items-center p-2 mb-2">
                                 <div className="flex px-0">Contaminant 2: </div>
                                 <div className="flex flex-row gap-4">
@@ -383,7 +401,7 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
                         <CustomButton
                             title={"Reset"} onClickCallback={resetButtonHandler} />
                     </div>
-                    
+
                 </div>
 
             </Card>
@@ -392,19 +410,24 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
                 <div>
                     <div className="flex flex-row justify-between p-2">
                         <div>RCC code:</div>
-                        <div className={`flex ${FinalRccToUse2p0Props === 0 && SeventyPercentBareAndDryUpgradeTo0Props === false ? 'text-red-500' : ''}`}>
-                            <FinalRccToUse2p0
-                                RccTotalPercentageBasic2p0State={RccTotalPercentageBasic2p0State}
-                                fromPercentageState={fromPercentageState}
-                                initialContaminationCoverage2={initialContaminationCoverage2}
-                                initialContaminationCoverage3={initialContaminationCoverage3}
-                                LowerRccContaminant2p0Props={LowerRccContaminant2p0Props}
-                                LowerRccContaminantWithBTW0To22p0Props={LowerRccContaminantWithBTW0To22p0Props}
-                                HigherPercentageContaminant2p0Props={HigherPercentageContaminant2p0Props}
-                                HigherPercentageContaminantWithBTW0To22p0Props={HigherPercentageContaminantWithBTW0To22p0Props}
-                                RccToUsePerColumnWithpavedOrGravelSelected1Props={RccToUsePerColumnWithpavedOrGravelSelected1Props}
-                                RccToUsePerColumnWithpavedOrGravelSelected2Props={RccToUsePerColumnWithpavedOrGravelSelected2Props}
-                            /></div>
+                       
+
+                            <div className={`flex ${FinalRccToUse2p0Props === 0 && SeventyPercentBareAndDryUpgradeTo0Props === false ? 'text-red-500' : ''}`}>
+                                <FinalRccToUse2p0
+                                    RccTotalPercentageBasic2p0State={RccTotalPercentageBasic2p0State}
+                                    fromPercentageState={fromPercentageState}
+                                    TopPercentageSelectorProps={TopPercentageSelectorProps}
+                                    BottomPercentageSelectorProps={BottomPercentageSelectorProps}
+                                    LowerRccContaminant2p0Props={LowerRccContaminant2p0Props}
+                                    LowerRccContaminantWithBTW0To22p0Props={LowerRccContaminantWithBTW0To22p0Props}
+                                    HigherPercentageContaminant2p0Props={HigherPercentageContaminant2p0Props}
+                                    HigherPercentageContaminantWithBTW0To22p0Props={HigherPercentageContaminantWithBTW0To22p0Props}
+                                    RccToUsePerColumnWithpavedOrGravelSelected1Props={RccToUsePerColumnWithpavedOrGravelSelected1Props}
+                                    RccToUsePerColumnWithpavedOrGravelSelected2Props={RccToUsePerColumnWithpavedOrGravelSelected2Props}
+                                />
+
+                            </div>
+
 
                     </div>
 
@@ -428,8 +451,9 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
 
 
                 <div style={{ marginBottom: '10px' }}>
-                    {DispatchPerformanceCheckProps === true && OneHundredPercentCompactedSnowpProps === false && FinalRccToUse2p0Props != 0 && sumComtamination1and2 <= 100 && (
+                    {DispatchPerformanceCheckProps === true && sumOfTopAndBottomPercentage <= 100 && OneHundredPercentCompactedSnowpProps === false && FinalRccToUse2p0Props != 0 && (
                         <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
+
                             Dispatch may have to verify the takeoff or Landing distances on the DASH8
                         </div>
                     )}
@@ -444,7 +468,7 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
                 </div>
 
                 <div style={{ marginBottom: '10px' }}>
-                    {initialRunwayConditionDescriptionPaved2.includes("100") && initialDropDownPavedOrGravel === "PAVED" && initialContaminationCoverage2 !== 100 && (
+                    {initialRunwayConditionDescriptionPaved2.includes("100") && initialDropDownPavedOrGravel === "PAVED" && TopPercentageSelectorProps !== 100 && (
                         <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
                             Runway must be completely covered with Compacted Snow to select this contaminant. If that is the case, select 100%
                         </div>
@@ -479,12 +503,12 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
                 </div>
 
                 <div style={{ marginBottom: '10px' }}>
-                    {initialAircraftType === "DHC-8" &&  sumComtamination1and2 < 40 && FinalRccToUse2p0Props != 0 && initialDropDownPavedOrGravel === "GRAVEL" && 
-                    allGravelRunwayConditionDescription.includes('-Wet Snow greater than 0.13 in depth over Compacted snow/gravel mix') && (
-                        <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
-                            Max Wet Snow Depth = 1.0 in
-                        </div>
-                    )}
+                    {initialAircraftType === "DHC-8" && FinalRccToUse2p0Props != 0 && sumOfTopAndBottomPercentage < 40 && initialDropDownPavedOrGravel === "GRAVEL" &&
+                        allGravelRunwayConditionDescription.includes('-Wet Snow greater than 0.13 in depth over Compacted snow/gravel mix') && (
+                            <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
+                                Max Wet Snow Depth = 1.0 in
+                            </div>
+                        )}
                 </div>
 
 
@@ -524,7 +548,7 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
 
 
                 <div style={{ marginBottom: '10px' }}>
-                    {initialAircraftType === "DHC-8" && initialDropDownPavedOrGravel === "GRAVEL" &&  allRunwayConditionDescription.includes('-Slush Greater than 0.13 in depth') && (
+                    {initialAircraftType === "DHC-8" && initialDropDownPavedOrGravel === "GRAVEL" && allRunwayConditionDescription.includes('-Slush Greater than 0.13 in depth') && (
                         <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
                             Max Slush Depth = 0.5 in
                         </div>
@@ -556,9 +580,9 @@ export default FirstPageRccNotProvided;
 FirstPageRccNotProvided.propTypes = {
     initialRunwayConditionDescriptionPaved2: PropTypes.array,
     initialContaminationCoverage2: PropTypes.number,
-    initialRunwayConditionDescriptionGravel3: PropTypes.array, 
-    initialRunwayConditionDescriptionPaved4:PropTypes.array, 
-    initialRunwayConditionDescriptionGravel1: PropTypes.array, 
+    initialRunwayConditionDescriptionGravel3: PropTypes.array,
+    initialRunwayConditionDescriptionPaved4: PropTypes.array,
+    initialRunwayConditionDescriptionGravel1: PropTypes.array,
     runwayConditionDescriptionGravel1Handler: PropTypes.array,
     setRunwayConditionDescriptionPaved2Handler: PropTypes.array,
     setRunwayConditionDescriptionGravel3Handler: PropTypes.array,
@@ -566,10 +590,14 @@ FirstPageRccNotProvided.propTypes = {
     initialAircraftType: PropTypes.string,
     setAircraftTypeHandler: PropTypes.string,
     setContaminationCoverage2Handler: PropTypes.number,
-    initialContaminationCoverage3: PropTypes.number, 
+    initialContaminationCoverage3: PropTypes.number,
     setContaminationCoverage3Handler: PropTypes.number,
-    initialDropDownPavedOrGravel: PropTypes.string, 
+    initialDropDownPavedOrGravel: PropTypes.string,
     setDropDownPavedOrGravelHandler: PropTypes.string,
+    initialContaminationCoverage1: PropTypes.number,
+    setContaminationCoverage1Handler: PropTypes.array,
+    initialContaminationCoverage4: PropTypes.number,
+    setContaminationCoverage4Handler: PropTypes.array,
 
 
 

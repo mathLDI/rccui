@@ -1,7 +1,8 @@
 
-const RccTotalPercentageBasic2p0 = ({initialContaminationCoverage2, initialContaminationCoverage3 }) => {
+const RccTotalPercentageBasic2p0 = ({TopPercentageSelectorProps, BottomPercentageSelectorProps }) => {
 
- const result = parseInt(initialContaminationCoverage2) + parseInt(initialContaminationCoverage3);
+    
+ const result = parseInt(TopPercentageSelectorProps) + parseInt(BottomPercentageSelectorProps);
 
  return result;
   

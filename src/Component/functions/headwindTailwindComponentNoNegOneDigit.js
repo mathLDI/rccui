@@ -3,7 +3,7 @@ const HeadwindTailwindComponentNoNegOneDigit = ({
 }) => {
 
     return parseFloat(Math.abs(HeadwindTailwindComponentProps,
-        ).toFixed(1)) + " kts";
+        ).toFixed(1)) ;
     
     }
     

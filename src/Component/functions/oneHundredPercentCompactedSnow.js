@@ -1,6 +1,6 @@
 
 
-const OneHundredPercentCompactedSnow = ({ initialRunwayConditionDescriptionPaved2, initialDropDownPavedOrGravel, initialContaminationCoverage2 }) => {
+const OneHundredPercentCompactedSnow = ({ initialRunwayConditionDescriptionPaved2, initialDropDownPavedOrGravel, TopPercentageSelectorProps }) => {
 
     if (
         (initialRunwayConditionDescriptionPaved2 !== "SELECT PAVED CONTAMINANT" && initialDropDownPavedOrGravel === "PAVED"
@@ -15,7 +15,7 @@ const OneHundredPercentCompactedSnow = ({ initialRunwayConditionDescriptionPaved
 
             (
 
-                initialContaminationCoverage2 === 0 || initialContaminationCoverage2 === 0 || initialContaminationCoverage2 < 100
+                TopPercentageSelectorProps === 0 || TopPercentageSelectorProps === 0 || TopPercentageSelectorProps < 100
 
             )
 
