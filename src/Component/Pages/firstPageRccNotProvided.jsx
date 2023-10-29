@@ -550,7 +550,7 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
                     )}
                 </div>
 
-            
+
 
 
                 <div style={{ marginBottom: '10px' }}>
@@ -606,8 +606,28 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
                 </div>
 
 
+                <div style={{ marginBottom: '10px' }}>
+                    {initialDropDownPavedOrGravel === "GRAVEL" && (
+                        (!initialRunwayConditionDescriptionGravel1.includes("SELECT") && !initialRunwayConditionDescriptionGravel3.includes("SELECT") &&
+                            initialRunwayConditionDescriptionGravel1 === initialRunwayConditionDescriptionGravel3)
+                    ) && (
+                            <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
+                                Same Contaminant in selection 1 and 2!
+                            </div>
+                        )}
+                </div>
 
-                
+
+                <div style={{ marginBottom: '10px' }}>
+                    {initialDropDownPavedOrGravel === "PAVED" && (
+                        (!initialRunwayConditionDescriptionPaved2.includes("SELECT") && !initialRunwayConditionDescriptionPaved4.includes("SELECT") &&
+                            initialRunwayConditionDescriptionPaved2 === initialRunwayConditionDescriptionPaved4)
+                    ) && (
+                            <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
+                                Same Contaminant in selection 1 and 2!
+                            </div>
+                        )}
+                </div>
 
 
 
