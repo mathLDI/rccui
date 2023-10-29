@@ -426,7 +426,8 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
 
                     <div className="flex flex-row justify-between p-2">
                         <div>Max crosswind:</div>
-                        {initialAircraftType === "DHC-8" ? (
+
+                        { (
                             initialRunwayConditionDescriptionPaved2.includes("100") && initialContaminationCoverage2 !== 100 ? (
                                 <div className="text-white">
                                     {SelectedRccToMaxXwindDash8Props}
@@ -436,8 +437,7 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
                                     {SelectedRccToMaxXwindDash8Props}
                                 </div>
                             )
-                        ) : (
-                            <div>{SelectedRccToMaxXwindHS748Props}</div>
+                       
                         )}
                     </div>
 
@@ -455,7 +455,7 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
 
 
                 <div style={{ marginBottom: '10px' }}>
-                    {DispatchPerformanceCheckProps === true && sumOfTopAndBottomPercentage <= 100 && OneHundredPercentCompactedSnowpProps === false && FinalRccToUse2p0Props != 0 && (
+                    {DispatchPerformanceCheckProps === true &&initialAircraftType == "DHC-8" &&  sumOfTopAndBottomPercentage <= 100 && OneHundredPercentCompactedSnowpProps === false && FinalRccToUse2p0Props != 0 && (
                         <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
 
                             Dispatch may have to verify the takeoff or Landing distances on the DASH8
