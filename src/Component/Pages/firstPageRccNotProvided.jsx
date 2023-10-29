@@ -423,11 +423,9 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
                         )}
                     </div>
 
-
                     <div className="flex flex-row justify-between p-2">
                         <div>Max crosswind:</div>
-
-                        { (
+                        {initialAircraftType === "DHC-8" ? (
                             initialRunwayConditionDescriptionPaved2.includes("100") && initialContaminationCoverage2 !== 100 ? (
                                 <div className="text-white">
                                     {SelectedRccToMaxXwindDash8Props}
@@ -437,7 +435,16 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
                                     {SelectedRccToMaxXwindDash8Props}
                                 </div>
                             )
-                       
+                        ) : (
+                            initialRunwayConditionDescriptionPaved2.includes("100") && initialContaminationCoverage2 !== 100 ? (
+                                <div className="text-white">
+                                    {SelectedRccToMaxXwindHS748Props}
+                                </div>
+                            ) : (
+                                <div className={`flex ${FinalRccToUse2p0Props === 0 && SeventyPercentBareAndDryUpgradeTo0Props === false ? 'text-red-500' : 'text-black'}`}>
+                                    {SelectedRccToMaxXwindHS748Props}
+                                </div>
+                            )
                         )}
                     </div>
 
@@ -455,7 +462,7 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
 
 
                 <div style={{ marginBottom: '10px' }}>
-                    {DispatchPerformanceCheckProps === true &&initialAircraftType == "DHC-8" &&  sumOfTopAndBottomPercentage <= 100 && OneHundredPercentCompactedSnowpProps === false && FinalRccToUse2p0Props != 0 && (
+                    {DispatchPerformanceCheckProps === true && initialAircraftType == "DHC-8" && sumOfTopAndBottomPercentage <= 100 && OneHundredPercentCompactedSnowpProps === false && FinalRccToUse2p0Props != 0 && (
                         <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
 
                             Dispatch may have to verify the takeoff or Landing distances on the DASH8
@@ -490,7 +497,7 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
                 {/**CONTAMINATION DEPTH WARNING BELOW */}
 
                 <div style={{ marginBottom: '10px' }}>
-                    {initialAircraftType === "DHC-8" && initialDropDownPavedOrGravel === "PAVED" && FinalRccToUse2p0Props != 0 && allPavedRunwayConditionDescription.includes('-Dry Snow more than 1.0 in depth') && (
+                    {initialDropDownPavedOrGravel === "PAVED" && FinalRccToUse2p0Props != 0 && allPavedRunwayConditionDescription.includes('-Dry Snow more than 1.0 in depth') && (
                         <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
                             Max Dry Snow Depth = 2.0 in
                         </div>
@@ -499,7 +506,7 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
 
 
                 <div style={{ marginBottom: '10px' }}>
-                    {initialAircraftType === "DHC-8" && initialDropDownPavedOrGravel === "GRAVEL" && FinalRccToUse2p0Props != 0 && allGravelRunwayConditionDescription.includes('-Dry Snow more than 1.0 in depth') && (
+                    {initialDropDownPavedOrGravel === "GRAVEL" && FinalRccToUse2p0Props != 0 && allGravelRunwayConditionDescription.includes('-Dry Snow more than 1.0 in depth') && (
                         <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
                             Max Dry Snow Depth = 2.0 in
                         </div>
@@ -517,6 +524,16 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
 
 
                 <div style={{ marginBottom: '10px' }}>
+                    {initialAircraftType === "HS-748" && FinalRccToUse2p0Props != 0 && sumOfTopAndBottomPercentage < 40 && initialDropDownPavedOrGravel === "GRAVEL" &&
+                        allGravelRunwayConditionDescription.includes('-Wet Snow greater than 0.13 in depth over Compacted snow/gravel mix') && (
+                            <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
+                                Max Wet Snow Depth = 0.5 in
+                            </div>
+                        )}
+                </div>
+
+
+                <div style={{ marginBottom: '10px' }}>
                     {initialAircraftType === "DHC-8" && initialDropDownPavedOrGravel === "PAVED" && FinalRccToUse2p0Props != 0 && allRunwayConditionDescription.includes('-Wet Snow greater than 0.13 in depth') && (
                         <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
                             Max Wet Snow Depth = 1.0 in
@@ -524,8 +541,28 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
                     )}
                 </div>
 
+
+                <div style={{ marginBottom: '10px' }}>
+                    {initialAircraftType === "HS-748" && initialDropDownPavedOrGravel === "PAVED" && FinalRccToUse2p0Props != 0 && allRunwayConditionDescription.includes('-Wet Snow greater than 0.13 in depth') && (
+                        <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
+                            Max Wet Snow Depth = 0.5 in
+                        </div>
+                    )}
+                </div>
+
+            
+
+
                 <div style={{ marginBottom: '10px' }}>
                     {initialAircraftType === "DHC-8" && initialDropDownPavedOrGravel === "PAVED" && FinalRccToUse2p0Props != 0 && allRunwayConditionDescription.includes('-Water Greater than 0.13 in depth') && (
+                        <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
+                            Max Water Depth = 0.5 in
+                        </div>
+                    )}
+                </div>
+
+                <div style={{ marginBottom: '10px' }}>
+                    {initialAircraftType === "DHC-8" && initialDropDownPavedOrGravel === "GRAVEL" && FinalRccToUse2p0Props != 0 && allRunwayConditionDescription.includes('-Water Greater than 0.13 in depth') && (
                         <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
                             Max Water Depth = 0.5 in
                         </div>
@@ -543,21 +580,35 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
 
 
                 <div style={{ marginBottom: '10px' }}>
-                    {initialAircraftType === "DHC-8" && initialDropDownPavedOrGravel === "GRAVEL" && FinalRccToUse2p0Props != 0 && allRunwayConditionDescription.includes('-Water Greater than 0.13 in depth') && (
-                        <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
-                            Max Water Depth = 0.5 in
-                        </div>
-                    )}
-                </div>
-
-
-                <div style={{ marginBottom: '10px' }}>
                     {initialAircraftType === "DHC-8" && initialDropDownPavedOrGravel === "GRAVEL" && allRunwayConditionDescription.includes('-Slush Greater than 0.13 in depth') && (
                         <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
                             Max Slush Depth = 0.5 in
                         </div>
                     )}
                 </div>
+
+
+                <div style={{ marginBottom: '10px' }}>
+                    {initialAircraftType === "HS-748" && initialDropDownPavedOrGravel === "PAVED" && FinalRccToUse2p0Props != 0 && allRunwayConditionDescription.includes('-Slush Greater than 0.13 in depth') && (
+                        <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
+                            Max Slush Depth = 0.5 in
+                        </div>
+                    )}
+                </div>
+
+
+                <div style={{ marginBottom: '10px' }}>
+                    {initialAircraftType === "HS-748" && initialDropDownPavedOrGravel === "GRAVEL" && allRunwayConditionDescription.includes('-Slush Greater than 0.13 in depth') && (
+                        <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
+                            Max Slush Depth = 0.5 in
+                        </div>
+                    )}
+                </div>
+
+
+
+                
+
 
 
 
