@@ -1,28 +1,43 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import PropTypes from "prop-types";
+import { useState } from "react";
+
+
 
 const navigation = [
-  { name: 'RCC Calculator', href: '#', current: true },
-  { name: 'X-Wind', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
+  { name: 'RCC Calculator', href: '#', id: 'rcc' },
+  { name: 'X-Wind', href: '#', id: 'xwind' },
+  //{ name: 'Projects', href: '#', current: false },
+  //{ name: 'Calendar', href: '#', current: false },
 ]
-
-
 
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Navbar({selectedNavItem, onNavItemClick}) {
+
+export default function Navbar({ selectedNavItem, onNavItemClick }) {
 
 
-  const updatedNavigation = navigation.map(item => ({
-    ...item,
-    current: item.name === selectedNavItem,
-  }));
+  console.log("selectedNavItem from NavBar:", selectedNavItem)
+
+  const [activeButtons, setActiveButtons] = useState(
+    navigation.reduce((acc, item) => {
+      acc[item.id] = item.current;
+      return acc;
+    }, {})
+  );
+
+  const handleButtonClick = (id) => {
+    setActiveButtons((prevActiveButtons) => ({
+      ...prevActiveButtons,
+      [id]: !prevActiveButtons[id],
+    }));
+  };
+
 
   return (
     <Disclosure as="nav" className="bg-gray-800 w-full">
@@ -52,13 +67,18 @@ export default function Navbar({selectedNavItem, onNavItemClick}) {
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
-                    {updatedNavigation.map((item) => (
+                    {navigation.map((item) => (
                       <a
                         key={item.name}
                         href={item.href}
-                        onClick={() => onNavItemClick(item.name)}  // Handle the click here
+                        onClick={() => {
+                          onNavItemClick(item.name);
+                          handleButtonClick(item.id);
+                        }}
                         className={classNames(
-                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                          activeButtons[item.id]
+                            ? 'bg-gray-900 text-white'
+                            : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                           'rounded-md px-3 py-2 text-sm font-medium'
                         )}
                         aria-current={item.current ? 'page' : undefined}
@@ -162,3 +182,11 @@ export default function Navbar({selectedNavItem, onNavItemClick}) {
     </Disclosure>
   )
 }
+
+
+Navbar.propTypes = {
+
+  selectedNavItem: PropTypes.string,
+  onNavItemClick: PropTypes.func,
+
+};

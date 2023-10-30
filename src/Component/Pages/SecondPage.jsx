@@ -2,20 +2,23 @@
 import SecondPageCrosswindCalculator from '../Pages/SecondPageCrosswindCalculator.jsx'
 
 
-const SecondPage = ({ setAircraftTypeHandler, initialAircraftType,
-  initialRunwayHeading, setRunwayHeadingHandler,
-  initialWindDirection, setWindDirectionHandler, initialWindSpeed, setWindSpeedHandler
+const SecondPage = ({ 
+  setAircraftTypeHandler, 
+  initialAircraftType,
+  initialRunwayHeading, 
+  setRunwayHeadingHandler,
+  initialWindDirection, 
+  setWindDirectionHandler, 
+  initialWindSpeed, 
+  setWindSpeedHandler
 
 }) => {
 
-  console.log("initialAircraftType from SecondPage:", initialAircraftType)
 
   return (
 
-    <div>
-      <div className="grid h-screen md:place-items-center bg-gray-100 justify-center" >
-        <div className="container mx-auto pt-10 md:pt-0 bg-gray-100"   >
-
+   
+<div className="container mx-auto pt-10 md:pt-0 bg-gray-100 flex justify-center items-center h-screen">
           <div>
 
 
@@ -27,12 +30,8 @@ const SecondPage = ({ setAircraftTypeHandler, initialAircraftType,
             />}
 
           </div>
-
-        </div>
-
-
       </div>
-    </div>
+ 
   );
 }
 

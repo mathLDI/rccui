@@ -69,7 +69,6 @@ const SecondPageCrosswindCalculator = ({ initialAircraftType, setAircraftTypeHan
         setResetListBox(false);
     };
 
-    console.log("CrosswindComponentNoNegOneDigitProps:", typeof (CrosswindComponentNoNegOneDigitProps))
 
 
     return (

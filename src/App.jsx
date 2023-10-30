@@ -2,11 +2,10 @@ import { useState } from "react";
 import Navbar from './Component/NavBar.jsx';
 import SecondPage from './Component/Pages/SecondPage.jsx';
 import FirstPageSelector from './Component/Pages/firstPage.jsx';
-import ThirdPageTest from './Component/Pages/thirdPage.jsx';
+
 
 function App() {
-  const [selectedNavItem, setSelectedNavItem] = useState('RCC Calculator');
-  const [count, setCount] = useState(0);
+  const [selectedNavItem, setSelectedNavItem] = useState([]);
   const [aircraftType, setAircraftType] = useState("DHC-8")
   const [runwayConditionDescriptionGravel1, setRunwayConditionDescriptionGravel1] = useState("SELECT GRAVEL CONTAMINANT");
   const [runwayConditionDescriptionGravel3, setRunwayConditionDescriptionGravel3] = useState("SELECT GRAVEL CONTAMINANT");
@@ -35,56 +34,70 @@ function App() {
 
 
 
-  // Function to handle navigation item selection
   const handleNavItemClick = (v) => {
-    setSelectedNavItem(v);
-  }
+    if (selectedNavItem.includes(v)) {
+      setSelectedNavItem((prev) => prev.filter((item) => item !== v));
+    } else {
+      setSelectedNavItem((prev) => [...prev, v]);
+    }
+  };
 
-  
 
   return (
     <div>
       <Navbar selectedNavItem={selectedNavItem} onNavItemClick={handleNavItemClick} />
+      <div className="flex-col">
+        <div className="h-screen bg-amber-500 justify-center items-center">
+          <div className="flex flex-wrap justify-center">
 
-      {selectedNavItem === 'RCC Calculator' &&
-        <FirstPageSelector
-          initialRunwayConditionDescriptionGravel1={runwayConditionDescriptionGravel1}
-          runwayConditionDescriptionGravel1Handler={setRunwayConditionDescriptionGravel1}
-          initialRunwayConditionDescriptionGravel3={runwayConditionDescriptionGravel3}
-          setRunwayConditionDescriptionGravel3Handler={setRunwayConditionDescriptionGravel3}
-          initialRunwayConditionDescriptionPaved2={runwayConditionDescriptionPaved2}
-          setRunwayConditionDescriptionPaved2Handler={setRunwayConditionDescriptionPaved2}
-          initialRunwayConditionDescriptionPaved4={runwayConditionDescriptionPaved4}
-          setRunwayConditionDescriptionPaved4Handler={setRunwayConditionDescriptionPaved4}
-          initialAircraftType={aircraftType} setAircraftTypeHandler={setAircraftType}
-          initialTypeOfReport={typeOfReport} setTypeOfReportHandler={setTypeOfReport}
-          initialDropDownPavedOrGravel={dropDownPavedOrGravel} setDropDownPavedOrGravelHandler={setDropDownPavedOrGravel}
-          initialContaminationCoverage2={contaminationCoverage2} setContaminationCoverage2Handler={setContaminationCoverage2}
-          initialContaminationCoverage3={contaminationCoverage3} setContaminationCoverage3Handler={setContaminationCoverage3}
-
-          initialContaminationCoverage1={contaminationCoverage1} setContaminationCoverage1Handler={setContaminationCoverage1}
-          initialContaminationCoverage4={contaminationCoverage4} setContaminationCoverage4Handler={setContaminationCoverage4}
-
-          initialRwycc1={rwycc1} setRwycc1Handler={setRwycc1}
-          initialRwycc2={rwycc2} setRwycc2Handler={setRwycc2}
-          initialRwycc3={rwycc3} setRwycc3Handler={setRwycc3}
-          initialCorrectedLandingDistance={correctedLandingDistance}
-          setCorrectedLandingDistanceHandler={setCorrectedLandingDistance}
-          initialRunwayLength={runwayLength} setRunwayLengthHandler={setRunwayLength}
-        />}
-
-      {selectedNavItem === 'X-Wind' && <SecondPage 
-      initialAircraftType={aircraftType} setAircraftTypeHandler={setAircraftType} 
-      initialRunwayHeading={runwayHeading} setRunwayHeadingHandler={setRunwayHeading}
-      initialWindDirection = {windDirection} setWindDirectionHandler={setWindDirection}
-
-      initialWindSpeed={windSpeed}  setWindSpeedHandler={setWindSpeed}
-      />
-      }
-      {selectedNavItem === 'Projects' && <ThirdPageTest countTest={count} countHandler={() => setCount(count + 1)} />}
+            {selectedNavItem.includes("RCC Calculator") && (
+              <div className="flex-1">
+                <FirstPageSelector
+                  initialRunwayConditionDescriptionGravel1={runwayConditionDescriptionGravel1}
+                  runwayConditionDescriptionGravel1Handler={setRunwayConditionDescriptionGravel1}
+                  initialRunwayConditionDescriptionGravel3={runwayConditionDescriptionGravel3}
+                  setRunwayConditionDescriptionGravel3Handler={setRunwayConditionDescriptionGravel3}
+                  initialRunwayConditionDescriptionPaved2={runwayConditionDescriptionPaved2}
+                  setRunwayConditionDescriptionPaved2Handler={setRunwayConditionDescriptionPaved2}
+                  initialRunwayConditionDescriptionPaved4={runwayConditionDescriptionPaved4}
+                  setRunwayConditionDescriptionPaved4Handler={setRunwayConditionDescriptionPaved4}
+                  initialAircraftType={aircraftType} setAircraftTypeHandler={setAircraftType}
+                  initialTypeOfReport={typeOfReport} setTypeOfReportHandler={setTypeOfReport}
+                  initialDropDownPavedOrGravel={dropDownPavedOrGravel} setDropDownPavedOrGravelHandler={setDropDownPavedOrGravel}
+                  initialContaminationCoverage2={contaminationCoverage2} setContaminationCoverage2Handler={setContaminationCoverage2}
+                  initialContaminationCoverage3={contaminationCoverage3} setContaminationCoverage3Handler={setContaminationCoverage3}
+                  initialContaminationCoverage1={contaminationCoverage1} setContaminationCoverage1Handler={setContaminationCoverage1}
+                  initialContaminationCoverage4={contaminationCoverage4} setContaminationCoverage4Handler={setContaminationCoverage4}
+                  initialRwycc1={rwycc1} setRwycc1Handler={setRwycc1}
+                  initialRwycc2={rwycc2} setRwycc2Handler={setRwycc2}
+                  initialRwycc3={rwycc3} setRwycc3Handler={setRwycc3}
+                  initialCorrectedLandingDistance={correctedLandingDistance}
+                  setCorrectedLandingDistanceHandler={setCorrectedLandingDistance}
+                  initialRunwayLength={runwayLength} setRunwayLengthHandler={setRunwayLength}
+                  initialSelectedNavItem={selectedNavItem}
+                />
+              </div>
+            )}
 
 
+
+            {selectedNavItem.includes('X-Wind') && (
+              <div className="flex-1">
+                <SecondPage
+                  initialAircraftType={aircraftType} setAircraftTypeHandler={setAircraftType}
+                  initialRunwayHeading={runwayHeading} setRunwayHeadingHandler={setRunwayHeading}
+                  initialWindDirection={windDirection} setWindDirectionHandler={setWindDirection}
+                  initialWindSpeed={windSpeed} setWindSpeedHandler={setWindSpeed}
+                />
+              </div>
+            )}
+
+
+          </div>
+        </div>
+      </div>
     </div>
+
   );
 }
 
