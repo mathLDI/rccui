@@ -47,7 +47,7 @@ function App() {
     <div>
       <Navbar selectedNavItem={selectedNavItem} onNavItemClick={handleNavItemClick} />
       <div className="flex-col">
-        <div className="h-screen bg-amber-500 justify-center items-center">
+        <div className="h-screen bg-gray-100 justify-center items-center">
           <div className="flex flex-wrap justify-center">
 
             {selectedNavItem.includes("RCC Calculator") && (
