@@ -82,22 +82,17 @@ function App() {
 
   return (
     <div>
-      <Navbar selectedNavItem={selectedNavItem} onNavItemClick={handleNavItemClick} />
-      <div className="flex flex-wrap h-screen items-center justify-evenly  p-10 bg-white">
-
-
-
-        <div className="flex-1/2 p-2">
-
-         
-            <div className="flex-1  mt-4">
-              {user === null ? ( // Check if the user is not signed in
-                <SignIn auth={auth} />
-              ) : (
-                /* Display something else when the user is signed in */
-                <div>
-                  <div className="flex-1/2 p-2">
-                    {selectedNavItem.includes("RCC Calculator") && (
+    {user !== null && <Navbar selectedNavItem={selectedNavItem} onNavItemClick={handleNavItemClick} />}
+    <div className="flex flex-wrap h-screen items-center justify-evenly  p-10 bg-white">
+      <div className="flex-1 p-2">
+        <div className="flex-1  mt-4">
+          {user === null ? ( // Check if the user is not signed in
+            <SignIn auth={auth} />
+          ) : (
+            /* Display something else when the user is signed in */
+            <div>
+              <div className="flex-1/2 p-2">
+                {selectedNavItem.includes("RCC Calculator") && (
                       <div className="flex-1 ">
                         <FirstPageSelector
                           initialRunwayConditionDescriptionGravel1={runwayConditionDescriptionGravel1}
@@ -126,7 +121,6 @@ function App() {
                       </div>
                     )}</div>
 
-
                   <div className="flex-1 p-2">
                     {selectedNavItem.includes('X-Wind') && (
                       <div className="flex-1  mt-4 ">
@@ -138,19 +132,12 @@ function App() {
                         />
                       </div>
                     )}</div>
-
                 </div>
               )}
             </div>
-          
         </div>
-
-
-
       </div>
-
     </div>
-
   );
 }
 
