@@ -4,6 +4,8 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import PropTypes from "prop-types";
 import { useState } from "react";
 import logo from '../assets/logo.png';
+import { signOut } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
 
 
@@ -38,6 +40,17 @@ export default function Navbar({ selectedNavItem, onNavItemClick }) {
       ...prevActiveButtons,
       [id]: !prevActiveButtons[id],
     }));
+  };
+
+
+  const handleSignOut = async () => {
+    const auth = getAuth();
+    try {
+      await signOut(auth);
+      // You can add additional logic after the user signs out if needed.
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
   };
 
 
@@ -112,7 +125,7 @@ export default function Navbar({ selectedNavItem, onNavItemClick }) {
                         fill="none"
                         viewBox="0 0 24 24"
                         strokeWidth={1.5}
-                        stroke="#A0AEC0" 
+                        stroke="#A0AEC0"
                         className="w-6 h-6 rounded-full"
                       >
                         <path
@@ -158,6 +171,7 @@ export default function Navbar({ selectedNavItem, onNavItemClick }) {
                         {({ active }) => (
                           <a
                             href="#"
+                            onClick={handleSignOut} // Call the handleSignOut function
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Sign out
