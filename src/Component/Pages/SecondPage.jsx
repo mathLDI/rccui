@@ -17,8 +17,9 @@ const SecondPage = ({
 
   return (
 
-   
-<div className="container mx-auto pt-10 md:pt-0 bg-gray-100 flex justify-center items-center h-screen">
+   <div className='flex justify-around '>
+
+<div name="secondpage" className="flex border-2 rounded p-3    bg-gray-100">
           <div>
 
 
@@ -31,6 +32,9 @@ const SecondPage = ({
 
           </div>
       </div>
+
+   </div>
+
  
   );
 }

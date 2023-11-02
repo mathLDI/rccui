@@ -24,25 +24,30 @@ const FirstPageSelector = ({ initialRunwayConditionDescriptionGravel1, runwayCon
 
     const buttonTypeOfReportChoices = ["RCC Not Provided", "RCC Provided"];
 
+    //const shouldAddBorder = initialSelectedNavItem.length === 2;
+    //const containerClasses = shouldAddBorder
+        //? "container md:pt-0 bg-gray-100 flex justify-center items-center h-screen border border-gray-300 rounded"
+        //: "container mx-auto pt-10 md:pt-0 bg-gray-100 flex justify-center items-center h-screen";
 
-    const shouldAddBorder = initialSelectedNavItem.length === 2;
-    const containerClasses = shouldAddBorder
-        ? "container mx-auto pt-10 md:pt-0 bg-gray-100 flex justify-center items-center h-screen border border-gray-300 rounded"
-        : "container mx-auto pt-10 md:pt-0 bg-gray-100 flex justify-center items-center h-screen";
 
+//add containerClasses as show below to add border line to RWYCC not provided:
+//<div name="firstPage" className="container mx-auto pt-10 lg:pt-0 bg-gray-100 flex justify-center items-center ">
+//<div className={containerClasses}>
+//<div className="flex flex-col justify-center items-center">
 
 
     return (
+/////////////////////modify h-screen!//////
 
+<div className='flex justify-around  '>     
+    <div name="firstPage" className="flex border-2 rounded p-3    bg-gray-100 ">
+            <div >
 
-        <div className="container mx-auto pt-10 md:pt-0 bg-gray-100 flex justify-center items-center h-screen">
-            <div className={containerClasses}>
+                <div className="">
 
-                <div className="flex flex-col justify-center items-center">
-
-                    <Card cardTitle={""} status={null}>
+                    <Card cardTitle={"Type of Report"} status={null}>
                         <div className="flex flex-row justify-between items-center p-2">
-                            <div>Type of Report:</div>
+                            
                             <ChoiceListbox
                                 value={initialTypeOfReport}
                                 choices={buttonTypeOfReportChoices}
@@ -99,7 +104,9 @@ const FirstPageSelector = ({ initialRunwayConditionDescriptionGravel1, runwayCon
             </div>
         </div>
 
+</div>
 
+   
 
 
     );

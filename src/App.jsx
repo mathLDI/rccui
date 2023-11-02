@@ -46,56 +46,55 @@ function App() {
   return (
     <div>
       <Navbar selectedNavItem={selectedNavItem} onNavItemClick={handleNavItemClick} />
-      <div className="flex-col">
-        <div className="h-screen bg-gray-100 justify-center items-center">
-          <div className="flex flex-wrap justify-center">
+      <div className="flex flex-wrap h-screen items-center justify-evenly  p-10 bg-white">
 
-            {selectedNavItem.includes("RCC Calculator") && (
-              <div className="flex-1">
-                <FirstPageSelector
-                  initialRunwayConditionDescriptionGravel1={runwayConditionDescriptionGravel1}
-                  runwayConditionDescriptionGravel1Handler={setRunwayConditionDescriptionGravel1}
-                  initialRunwayConditionDescriptionGravel3={runwayConditionDescriptionGravel3}
-                  setRunwayConditionDescriptionGravel3Handler={setRunwayConditionDescriptionGravel3}
-                  initialRunwayConditionDescriptionPaved2={runwayConditionDescriptionPaved2}
-                  setRunwayConditionDescriptionPaved2Handler={setRunwayConditionDescriptionPaved2}
-                  initialRunwayConditionDescriptionPaved4={runwayConditionDescriptionPaved4}
-                  setRunwayConditionDescriptionPaved4Handler={setRunwayConditionDescriptionPaved4}
-                  initialAircraftType={aircraftType} setAircraftTypeHandler={setAircraftType}
-                  initialTypeOfReport={typeOfReport} setTypeOfReportHandler={setTypeOfReport}
-                  initialDropDownPavedOrGravel={dropDownPavedOrGravel} setDropDownPavedOrGravelHandler={setDropDownPavedOrGravel}
-                  initialContaminationCoverage2={contaminationCoverage2} setContaminationCoverage2Handler={setContaminationCoverage2}
-                  initialContaminationCoverage3={contaminationCoverage3} setContaminationCoverage3Handler={setContaminationCoverage3}
-                  initialContaminationCoverage1={contaminationCoverage1} setContaminationCoverage1Handler={setContaminationCoverage1}
-                  initialContaminationCoverage4={contaminationCoverage4} setContaminationCoverage4Handler={setContaminationCoverage4}
-                  initialRwycc1={rwycc1} setRwycc1Handler={setRwycc1}
-                  initialRwycc2={rwycc2} setRwycc2Handler={setRwycc2}
-                  initialRwycc3={rwycc3} setRwycc3Handler={setRwycc3}
-                  initialCorrectedLandingDistance={correctedLandingDistance}
-                  setCorrectedLandingDistanceHandler={setCorrectedLandingDistance}
-                  initialRunwayLength={runwayLength} setRunwayLengthHandler={setRunwayLength}
-                  initialSelectedNavItem={selectedNavItem}
-                />
-              </div>
-            )}
-
-
-
-            {selectedNavItem.includes('X-Wind') && (
-              <div className="flex-1">
-                <SecondPage
-                  initialAircraftType={aircraftType} setAircraftTypeHandler={setAircraftType}
-                  initialRunwayHeading={runwayHeading} setRunwayHeadingHandler={setRunwayHeading}
-                  initialWindDirection={windDirection} setWindDirectionHandler={setWindDirection}
-                  initialWindSpeed={windSpeed} setWindSpeedHandler={setWindSpeed}
-                />
-              </div>
-            )}
-
-
+        <div className="flex-1/2 p-2">        
+          {selectedNavItem.includes("RCC Calculator") && (
+          <div className="flex-1 ">
+            <FirstPageSelector
+              initialRunwayConditionDescriptionGravel1={runwayConditionDescriptionGravel1}
+              runwayConditionDescriptionGravel1Handler={setRunwayConditionDescriptionGravel1}
+              initialRunwayConditionDescriptionGravel3={runwayConditionDescriptionGravel3}
+              setRunwayConditionDescriptionGravel3Handler={setRunwayConditionDescriptionGravel3}
+              initialRunwayConditionDescriptionPaved2={runwayConditionDescriptionPaved2}
+              setRunwayConditionDescriptionPaved2Handler={setRunwayConditionDescriptionPaved2}
+              initialRunwayConditionDescriptionPaved4={runwayConditionDescriptionPaved4}
+              setRunwayConditionDescriptionPaved4Handler={setRunwayConditionDescriptionPaved4}
+              initialAircraftType={aircraftType} setAircraftTypeHandler={setAircraftType}
+              initialTypeOfReport={typeOfReport} setTypeOfReportHandler={setTypeOfReport}
+              initialDropDownPavedOrGravel={dropDownPavedOrGravel} setDropDownPavedOrGravelHandler={setDropDownPavedOrGravel}
+              initialContaminationCoverage2={contaminationCoverage2} setContaminationCoverage2Handler={setContaminationCoverage2}
+              initialContaminationCoverage3={contaminationCoverage3} setContaminationCoverage3Handler={setContaminationCoverage3}
+              initialContaminationCoverage1={contaminationCoverage1} setContaminationCoverage1Handler={setContaminationCoverage1}
+              initialContaminationCoverage4={contaminationCoverage4} setContaminationCoverage4Handler={setContaminationCoverage4}
+              initialRwycc1={rwycc1} setRwycc1Handler={setRwycc1}
+              initialRwycc2={rwycc2} setRwycc2Handler={setRwycc2}
+              initialRwycc3={rwycc3} setRwycc3Handler={setRwycc3}
+              initialCorrectedLandingDistance={correctedLandingDistance}
+              setCorrectedLandingDistanceHandler={setCorrectedLandingDistance}
+              initialRunwayLength={runwayLength} setRunwayLengthHandler={setRunwayLength}
+              initialSelectedNavItem={selectedNavItem}
+            />
           </div>
-        </div>
+        )}</div>
+
+
+        <div className="flex-1/2 p-2">
+          {selectedNavItem.includes('X-Wind') && (
+          <div className="flex-1  mt-4 ">
+            <SecondPage
+              initialAircraftType={aircraftType} setAircraftTypeHandler={setAircraftType}
+              initialRunwayHeading={runwayHeading} setRunwayHeadingHandler={setRunwayHeading}
+              initialWindDirection={windDirection} setWindDirectionHandler={setWindDirection}
+              initialWindSpeed={windSpeed} setWindSpeedHandler={setWindSpeed}
+            />
+          </div>
+        )}</div>
+
+
+
       </div>
+
     </div>
 
   );
