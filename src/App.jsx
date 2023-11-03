@@ -90,7 +90,7 @@ function App() {
           /* Display something else when the user is signed in */
           <div className="flex flex-wrap items-center justify-evenly">
             {selectedNavItem.length === 0 ? (
-              <p>Select an item in the menu bar</p>
+              <p className="text-xl">Please select an item in the menu bar</p>
             ) : (
               <>
                 <div className="flex-1/2 p-2">
