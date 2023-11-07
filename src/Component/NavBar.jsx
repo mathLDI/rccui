@@ -13,7 +13,7 @@ import { getAuth } from "firebase/auth";
 const navigation = [
   { name: 'RCC Calculator', href: '#', id: 'rcc' },
   { name: 'X-Wind', href: '#', id: 'xwind' },
-  { name: 'PDF', href: '#', current: false },
+  { name: 'RCAM PDF', href: '#', current: false },
   //{ name: 'Calendar', href: '#', current: false },
 ]
 

@@ -152,7 +152,7 @@ function App() {
                 </div>
 
                 <div className="flex-1/2 p-2">
-                  {selectedNavItem.includes('PDF') && (
+                  {selectedNavItem.includes('RCAM PDF') && (
                     <div className="mt-4 ">
                       {/** Add the PDF here using an iframe */}
                       <iframe 
