@@ -5,9 +5,11 @@ import { signInWithEmailAndPassword } from "firebase/auth"; // Import only the n
 
 
 
-export default function SignIn({auth}) {
+export default function SignIn({ auth }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null); // State to hold error message
+
 
   const handleSignIn = async () => {
     try {
@@ -17,6 +19,8 @@ export default function SignIn({auth}) {
       // You can now access user information (e.g., user.uid, user.email, etc.)
     } catch (error) {
       console.error("Sign-in error:", error);
+      setError("Invalid login credentials. Please try again."); // Set the error message
+
     }
   }
 
@@ -61,7 +65,7 @@ export default function SignIn({auth}) {
                 </label>
                 <div className="text-sm">
                   <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                    Forgot password?
+                    {/**Forgot password? */}
                   </a>
                 </div>
               </div>
@@ -88,9 +92,14 @@ export default function SignIn({auth}) {
                 Sign in
               </button>
             </div>
+            
+            {error && ( // Display the error message when available
+              <div className="mt-4 text-red-600 text-sm">{error}</div>
+            )}
+
           </form>
 
-      
+
         </div>
       </div>
     </>
