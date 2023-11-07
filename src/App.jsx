@@ -2,13 +2,12 @@ import { useState, useEffect } from "react";
 import Navbar from './Component/NavBar.jsx';
 import SecondPage from './Component/Pages/SecondPage.jsx';
 import FirstPageSelector from './Component/Pages/firstPage.jsx';
-
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth"; // Import the Firebase Auth SDK
-
 import SignIn from './Component/Pages/signIn.jsx';
-
 import { onAuthStateChanged } from "firebase/auth";
+
+
 
 
 const firebaseConfig = {
@@ -134,7 +133,7 @@ function App() {
                     </div>
                   )}
                 </div>
-  
+
                 <div className="flex-1/2 p-2">
                   {selectedNavItem.includes('X-Wind') && (
                     <div className="mt-4">
@@ -151,6 +150,30 @@ function App() {
                     </div>
                   )}
                 </div>
+
+                <div className="flex-1/2 p-2">
+                  {selectedNavItem.includes('PDF') && (
+                    <div className="mt-4 ">
+                      {/** Add the PDF here using an iframe */}
+                      <iframe 
+                      title="PDF Viewer" 
+                      src=".\src\assets\RCAMv3.3.pdf" 
+                      style={{
+                        width: 'calc(100vh - 100px)',
+                        height: 'calc(100vh - 100px)', // Adjust the height as needed
+                        border: 'none',
+                      }}
+                      >
+                        This browser does not support PDFs. Please <a href="./assets/RCAMv3.3.pdf">download the PDF</a>.
+                      </iframe>
+                    </div>
+                  )}
+                </div>
+
+
+                
+
+
               </>
             )}
           </div>
@@ -158,7 +181,7 @@ function App() {
       </div>
     </div>
   );
-  
+
 }
 
 
