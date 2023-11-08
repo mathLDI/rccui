@@ -164,7 +164,7 @@ function App() {
                         border: 'none',
                       }}
                       >
-                        This browser does not support PDFs. Please <a href="./assets/RCAMv3.3.pdf">download the PDF</a>.
+                        This browser does not support PDFs. Please. <a href="./assets/RCAMv3.3.pdf">download the PDF</a>.
                       </iframe>
                     </div>
                   )}
