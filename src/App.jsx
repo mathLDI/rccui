@@ -176,6 +176,10 @@ function App() {
 
               </>
             )}
+
+            <div className="p-2">
+              <CustomButton title={showContaminent2 ? "Reset Contaminents" : "Reset Contaminent"} onClickCallback={resetButtonHandler} />
+            </div>
           </div>
         )}
       </div>
